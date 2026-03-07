@@ -426,6 +426,33 @@ Use these locations by default:
 - `src/app/feature/<name>` − feature-specific code with back-end/business logic
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` − generic shared code
 
+# Create a new project from this template
+
+Clone the default repository into a new folder with your project name(replace PROJECT_NAME with your project name):
+
+```bash
+git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME
+cd PROJECT_NAME
+npm i
+npm run start
+```
+
+### What these commands do
+
+- `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
+  Downloads the template repository and creates a local folder named `PROJECT_NAME`.
+
+- `cd PROJECT_NAME`
+  Opens the newly created project folder.
+
+- `npm i`
+  Installs all project dependencies from `package.json`.
+
+- `npm run start`
+  Starts the local development server.
+
+After that, open the local URL shown in the terminal, usually [http://localhost:4200](http://localhost:4200)
+
 # License
 
 MIT
