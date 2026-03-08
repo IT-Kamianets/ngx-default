@@ -45,6 +45,7 @@ src/
     pages/
   assets/
   environments/
+  styles/
   styles.scss
 ```
 
@@ -126,13 +127,13 @@ src/app/app.routes.server.ts
 RenderMode.Prerender
 ```
 
-```
+```ts
 export const serverRoutes: ServerRoute[] = [
-  {
-    path: '**',
-    renderMode: RenderMode.Prerender
-  }
-]
+	{
+		path: '**',
+		renderMode: RenderMode.Prerender,
+	},
+];
 ```
 
 This makes Angular generate static HTML for every route during build.
@@ -217,8 +218,7 @@ Recommended split:
 ```text
 src/styles.scss           -> global entry point
 src/app/**/**/*.scss      -> component-local styles
-src/styles/_tokens.scss   -> shared SCSS tokens
-src/styles/_mixins.scss   -> shared mixins
+src/styles/_theme.scss    -> shared theme CSS variables
 ```
 
 ---
@@ -274,7 +274,7 @@ dist/app/browser
 
 # Domain
 
-Custom domain which you should adjust to your own domain so it works properly, any subdomain of \*.itkamianets.com in case it's not used before on our github org.
+Custom domain which you should adjust to your own domain so it works properly, any subdomain of `*.itkamianets.com` in case it's not used before on our github org.
 
 ```
 ngx.itkamianets.com
@@ -516,13 +516,13 @@ src/app/interfaces/select-option.interface.ts
 
 Use these locations by default:
 
-- `src/app/pages` − app-level lazy loaded pages
-- `src/app/feature/<name>` − feature-specific code with back-end/business logic
-- `src/app/components`, `directives`, `pipes`, `services`, `interfaces` − generic shared code
+- `src/app/pages` - app-level lazy loaded pages
+- `src/app/feature/<name>` - feature-specific code with back-end/business logic
+- `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - generic shared code
 
 # Create a new project from this template
 
-Clone the default repository into a new folder with your project name(replace PROJECT_NAME with your project name):
+Clone the default repository into a new folder with your project name (replace `PROJECT_NAME` with your project name):
 
 ```bash
 git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME
@@ -535,17 +535,36 @@ npm run start
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Downloads the template repository and creates a local folder named `PROJECT_NAME`.
-
 - `cd PROJECT_NAME`
   Opens the newly created project folder.
-
 - `npm i`
   Installs all project dependencies from `package.json`.
-
 - `npm run start`
   Starts the local development server.
 
 After that, open the local URL shown in the terminal, usually [http://localhost:4200](http://localhost:4200)
+
+## Initialize your own git repository
+
+If you want to start fresh instead of keeping the template git history, remove the existing `.git` folder, initialize a new repository, and create the first commit.
+
+Example:
+
+```bash
+rm -rf .git
+git init
+git remote add origin https://github.com/IT-Kamianets/PROJECT_NAME.git
+git add .
+git commit -m "chore(init): bootstrap project from ngx-default template"
+```
+
+`git remote add origin ...` connects your local repository to the remote GitHub repository so future `git push` and `git pull` commands know where your main project lives.
+
+Use a Conventional Commit message for the first commit as well. A good default is:
+
+```text
+chore(init): bootstrap project from ngx-default template
+```
 
 # License
 
