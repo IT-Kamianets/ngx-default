@@ -4,6 +4,7 @@ import { marked } from 'marked';
 
 @Component({
 	templateUrl: './landing.component.html',
+	styleUrl: './landing.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent {

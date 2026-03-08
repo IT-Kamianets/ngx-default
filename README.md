@@ -11,8 +11,11 @@ This template is optimized for static landing sites where pages are rendered at 
 - Angular **21**
 - **SSR prerendering** during build
 - **Zoneless Angular**
+- State used in HTML class bindings should be exposed as **signals**
+- Prefer **Angular Signal Forms** as the primary forms approach when building new forms
 - **OnPush change detection by default**
 - **TailwindCSS v4**
+- Use shared **theme CSS variables** from `src/styles/_theme.scss` for colors, surfaces, spacing, radius, and motion
 - **GitHub Pages deployment**
 - **Prettier formatting**
 - Clean minimal project structure
@@ -38,7 +41,10 @@ src/
     app.config.server.ts
     app.routes.ts
     app.routes.server.ts
+    layouts/
+    pages/
   assets/
+  environments/
   styles.scss
 ```
 
