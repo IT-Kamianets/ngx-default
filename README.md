@@ -303,6 +303,15 @@ Key conventions:
 
 ---
 
+# AI Usage
+
+If you use AI outside the IDE and it does not automatically read repository instructions, copy the
+contents of `AGENTS.md` into the AI prompt/context first.
+
+This ensures the AI follows the same project-specific rules that Codex uses inside the IDE.
+
+---
+
 # NPM Scripts
 
 Start development:

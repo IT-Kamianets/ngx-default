@@ -1,0 +1,71 @@
+# AGENTS.md
+
+This file defines repo-specific instructions for coding agents working in this project.
+
+## Project Overview
+
+- Stack: Angular 21, TypeScript 5, Angular SSR/prerender, Tailwind CSS v4, SCSS, Express SSR server.
+- Package manager: `npm`
+- Formatting: Prettier with tabs, single quotes, and 100 character line width.
+- Primary output: prerendered static site from `dist/app/browser`
+
+## Core Expectations
+
+- Preserve the existing Angular architecture and keep changes aligned with Angular 21 patterns.
+- Prefer standalone Angular components and lazy-loaded pages.
+- Keep change detection `OnPush` for generated or new components.
+- Treat signals as the default state mechanism for template-driven UI state.
+- For new forms, prefer Angular Signal Forms unless the surrounding code already uses another pattern.
+- Assume the app is optimized for static landing pages first, not for a heavy client-side application shell.
+
+## Routing And SSR
+
+- App routes live in `src/app/app.routes.ts`.
+- Server prerender configuration lives in `src/app/app.routes.server.ts` and `src/app/app.config.server.ts`.
+- Do not introduce changes that break prerendering or require a browser-only runtime during build unless clearly isolated.
+- When adding a page, make it compatible with prerendering by default.
+
+## File Placement
+
+- App-level pages: `src/app/pages/<page-name>/`
+- Layout components: `src/app/layouts/`
+- Shared generic UI/components/services/pipes/directives/interfaces: `src/app/<type>/`
+- Feature-specific business logic: `src/app/feature/<feature-name>/`
+- Global theme tokens: `src/styles/_theme.scss`
+- Global styles entry: `src/styles.scss`
+
+## Styling Rules
+
+- Prefer Tailwind utilities for layout, spacing, typography, colors, borders, sizing, and responsive behavior.
+- Use component SCSS for styles that are not ergonomic in Tailwind or need local structure.
+- Reuse theme variables from `src/styles/_theme.scss` before introducing new raw values.
+- Keep selectors shallow and component-local.
+- Avoid `::ng-deep` and `ViewEncapsulation.None` unless integration constraints require them.
+- Use Material Symbols Outlined as the default icon set.
+
+## Templates And Accessibility
+
+- Keep templates simple and declarative.
+- Prefer Angular bindings over manual DOM manipulation.
+- Decorative icons should use `aria-hidden="true"`.
+- Interactive controls must have an accessible text label or `aria-label`.
+
+## Code Change Guidance
+
+- Make the smallest coherent change that solves the task.
+- Preserve existing naming, structure, and visual language unless the task explicitly asks for redesign.
+- Avoid introducing new dependencies unless necessary.
+- If adding browser APIs, guard them for SSR compatibility.
+- Keep comments sparse and only where logic is not obvious.
+
+## Verification
+
+After meaningful changes, verify with the most relevant command available.
+
+- `npm run build`
+- `npm start` for local development checks when needed
+
+## Notes For Future Agents
+
+- This repository currently contains a landing page under `src/app/pages/landing/` and a topbar layout under `src/app/layouts/topbar/`.
+- The Angular workspace defaults skip test generation for most schematics, so absence of tests is normal unless a task explicitly adds them.
