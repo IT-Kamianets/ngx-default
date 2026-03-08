@@ -65,11 +65,7 @@ or
 ng serve
 ```
 
-Application runs at:
-
-```
-http://localhost:4200
-```
+Application runs at [http://localhost:4200](http://localhost:4200)
 
 Development mode runs as a normal Angular SPA.
 
@@ -145,11 +141,103 @@ Tailwind is configured via:
 .postcssrc.json
 ```
 
+Tailwind should be used as much as possible for everyday UI work.
+
+Prefer Tailwind utilities for:
+
+- layout
+- spacing
+- typography
+- colors
+- borders
+- sizing
+- responsive behavior
+
+Use SCSS only when Tailwind is not the right tool, for example:
+
+- component-specific complex styling
+- shared design tokens and mixins
+- advanced states or selectors
+- small amounts of global styling
+
 Global styles live in:
 
 ```
 src/styles.scss
 ```
+
+---
+
+# Icons
+
+This template includes **Material Symbols Outlined** and those should be used as the default icon set across the project.
+
+Loaded in:
+
+```
+src/index.html
+```
+
+Use icons directly in HTML like this:
+
+```html
+<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+```
+
+For accessible buttons, keep the icon decorative and provide a text label or `aria-label` on the button itself:
+
+```html
+<button type="button" aria-label="Open menu">
+	<span class="material-symbols-outlined" aria-hidden="true">menu</span>
+</button>
+```
+
+---
+
+# SCSS Conventions
+
+Use SCSS in a way that matches modern Angular defaults:
+
+- Keep most styles inside the component `.scss` file.
+- Use `src/styles.scss` only for truly global styles like resets, tokens, typography, and utility layers.
+- Prefer CSS variables for colors, spacing, and theming that may change at runtime.
+- Use SCSS features like `@use`, mixins, and partials for authoring convenience and shared design tokens.
+- Avoid deep selector nesting. Keep selectors simple and local to the component.
+- Avoid `::ng-deep` and `ViewEncapsulation.None` unless there is a clear integration reason.
+- Prefer class bindings in templates over heavy inline style bindings.
+
+Recommended split:
+
+```text
+src/styles.scss           -> global entry point
+src/app/**/**/*.scss      -> component-local styles
+src/styles/_tokens.scss   -> shared SCSS tokens
+src/styles/_mixins.scss   -> shared mixins
+```
+
+---
+
+# Environments
+
+This template includes Angular environment files and they can be used for different runtime setups such as local development and production builds.
+
+Available files:
+
+```text
+src/environments/environment.ts
+src/environments/environment.prod.ts
+```
+
+Typical use cases:
+
+- API base URLs
+- feature flags
+- analytics toggles
+- external service configuration
+
+Production builds replace `environment.ts` with `environment.prod.ts` through Angular file replacements.
+
+Keep environment files limited to public front-end configuration. Do not store secrets in them.
 
 ---
 
