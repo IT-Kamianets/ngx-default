@@ -39,6 +39,15 @@ Keep contributions aligned with the current template conventions described in [R
 - Public front-end runtime config belongs in `src/environments`
 - Do not place secrets in Angular environment files
 
+## Translations
+
+- UI translation entries live in `src/app/app.translates.ts`
+- Language metadata lives in `src/app/feature/language/language.type.ts`, `language.interface.ts`, `language.const.ts`, and `language.service.ts`
+- Keep translation keys aligned with the English source text used in templates and components
+- If you add a language, update both `LanguageCode` and `LANGUAGES`
+- Save translation files as UTF-8 and use proper native characters for labels and translated text
+- Do not replace native characters with mojibake, HTML entities, or ad hoc transliterations
+
 ## Code quality
 
 - Keep templates and components simple and readable
@@ -53,4 +62,5 @@ Keep contributions aligned with the current template conventions described in [R
 - Check that styling uses shared theme variables where applicable
 - Check that dark mode still works
 - Check that the change does not break SSR or prerender assumptions
+- Check that any edited translations still render as proper native characters in the UI
 - Keep documentation updated when project conventions or structure change

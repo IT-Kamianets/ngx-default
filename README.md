@@ -201,6 +201,32 @@ For accessible buttons, keep the icon decorative and provide a text label or `ar
 
 ---
 
+# Translations And Languages
+
+UI translations currently live in:
+
+```text
+src/app/app.translates.ts
+```
+
+Language metadata lives in:
+
+```text
+src/app/feature/language/language.type.ts
+src/app/feature/language/language.interface.ts
+src/app/feature/language/language.const.ts
+src/app/feature/language/language.service.ts
+```
+
+When adding or updating translations:
+
+- keep language codes aligned with `LanguageCode`
+- update `LANGUAGES` when adding or renaming a supported language
+- store translation text and language labels as real UTF-8 characters, not escaped or re-encoded mojibake
+- keep English source strings stable unless you intend to update every translation entry
+
+---
+
 # SCSS Conventions
 
 Use SCSS in a way that matches modern Angular defaults:
@@ -463,6 +489,10 @@ Interfaces are usually created manually:
 src/app/feature/user/interfaces/user.interface.ts
 src/app/feature/user/interfaces/user-response.interface.ts
 ```
+
+For small focused features, colocated files like `feature/language/language.type.ts`,
+`language.interface.ts`, `language.const.ts`, and `language.service.ts` are also valid when that
+structure keeps the feature simpler.
 
 ---
 

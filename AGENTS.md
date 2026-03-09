@@ -31,6 +31,8 @@ This file defines repo-specific instructions for coding agents working in this p
 - Layout components: `src/app/layouts/`
 - Shared generic UI/components/services/pipes/directives/interfaces: `src/app/<type>/`
 - Feature-specific business logic: `src/app/feature/<feature-name>/`
+- Translation entries: `src/app/app.translates.ts`
+- Language feature metadata: `src/app/feature/language/language.type.ts`, `language.interface.ts`, `language.const.ts`
 - Global theme tokens: `src/styles/_theme.scss`
 - Global styles entry: `src/styles.scss`
 
@@ -49,6 +51,14 @@ This file defines repo-specific instructions for coding agents working in this p
 - Prefer Angular bindings over manual DOM manipulation.
 - Decorative icons should use `aria-hidden="true"`.
 - Interactive controls must have an accessible text label or `aria-label`.
+
+## Translations And Encoding
+
+- Keep language codes in sync with `src/app/feature/language/language.type.ts`.
+- Keep language labels in `src/app/feature/language/language.const.ts`.
+- Keep UI translation strings in `src/app/app.translates.ts`.
+- Preserve native language characters as UTF-8 text; do not introduce mojibake such as `FranÃ§ais`.
+- When adding a language, update both the language metadata files and the translation map.
 
 ## Code Change Guidance
 

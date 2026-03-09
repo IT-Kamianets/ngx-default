@@ -1,71 +1,73 @@
-import { DOCUMENT, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
-import {
-	ChangeDetectionStrategy,
-	Component,
-	PLATFORM_ID,
-	computed,
-	inject,
-	signal,
-} from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ThemeService, TranslatePipe, TranslateService } from 'wacom';
+import { LanguageOption } from '../../feature/language/language.interface';
+import { LanguageService } from '../../feature/language/language.service';
 
 @Component({
 	selector: 'app-topbar',
-	imports: [NgOptimizedImage, RouterLink],
+	imports: [NgOptimizedImage, RouterLink, TranslatePipe],
 	templateUrl: './topbar.component.html',
 	styleUrl: './topbar.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopbarComponent {
-	private readonly modeStorageKey = 'app-mode';
-	private readonly document = inject(DOCUMENT);
-	private readonly platformId = inject(PLATFORM_ID);
-	private readonly isBrowser = isPlatformBrowser(this.platformId);
-	private readonly rootElement = this.document.documentElement ?? null;
+	private readonly _translateService = inject(TranslateService);
+	private readonly _themeService = inject(ThemeService);
+	private readonly _languageService = inject(LanguageService);
 
-	protected readonly mode = signal<'light' | 'dark'>(this.getInitialMode());
+	protected readonly mode = computed(() => this._themeService.mode() ?? 'light');
+	protected readonly languageMenuOpen = signal(false);
+	protected readonly languages = this._languageService.languages;
+	protected readonly currentLanguage = computed(() =>
+		this._languageService.getLanguage(this._languageService.language()),
+	);
 	protected readonly toggleIcon = computed(() =>
 		this.mode() === 'dark' ? 'light_mode' : 'dark_mode',
 	);
 	protected readonly toggleLabel = computed(() =>
-		this.mode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+		this.mode() === 'dark'
+			? this._translateService.translate('Switch to light mode')()
+			: this._translateService.translate('Switch to dark mode')(),
 	);
+	protected readonly languageMenuLabel = computed(() =>
+		this._translateService.translate('Open language menu')(),
+	);
+	protected readonly languageCycleLabel = computed(
+		() =>
+			`${this._translateService.translate('Switch language to')()} ${this.getNextLanguage().label}`,
+	);
+
+	constructor() {
+		this._themeService.init();
+		this._languageService.init();
+	}
 
 	protected toggleMode(): void {
 		const nextMode = this.mode() === 'dark' ? 'light' : 'dark';
-		this.mode.set(nextMode);
-		this.applyMode(nextMode);
+		this._themeService.setMode(nextMode);
 	}
 
-	private getInitialMode(): 'light' | 'dark' {
-		const storedMode = this.getStoredMode();
-		if (storedMode) {
-			this.applyMode(storedMode);
-			return storedMode;
-		}
-
-		const activeMode = this.rootElement?.getAttribute('data-mode');
-		if (activeMode === 'dark' || activeMode === 'light') {
-			return activeMode;
-		}
-
-		this.applyMode('light');
-		return 'light';
+	protected nextLanguage(): void {
+		this._languageService.nextLanguage();
+		this.languageMenuOpen.set(false);
 	}
 
-	private applyMode(mode: 'light' | 'dark'): void {
-		this.rootElement?.setAttribute('data-mode', mode);
-		if (this.isBrowser) {
-			this.document.defaultView?.localStorage.setItem(this.modeStorageKey, mode);
-		}
+	protected toggleLanguageMenu(): void {
+		this.languageMenuOpen.update((open) => !open);
 	}
 
-	private getStoredMode(): 'light' | 'dark' | null {
-		if (!this.isBrowser) {
-			return null;
-		}
+	protected setLanguage(language: LanguageOption): void {
+		this._languageService.setLanguage(language.code);
+		this.languageMenuOpen.set(false);
+	}
 
-		const storedMode = this.document.defaultView?.localStorage.getItem(this.modeStorageKey);
-		return storedMode === 'dark' || storedMode === 'light' ? storedMode : null;
+	protected getNextLanguage(): LanguageOption {
+		const languages = this.languages();
+		const currentCode = this.currentLanguage().code;
+		const currentIndex = languages.findIndex((language) => language.code === currentCode);
+
+		return languages[(currentIndex + 1) % languages.length] ?? languages[0]!;
 	}
 }
