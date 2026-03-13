@@ -50,8 +50,7 @@
 							{
 								"glob": "**/*",
 								"input": "src/assets"
-							},
-							"README.md"
+							}
 						],
 						"styles": ["src/styles.scss"],
 						"server": "src/main.server.ts",

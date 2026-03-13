@@ -3,6 +3,7 @@ import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { Translate, TranslateService } from 'wacom';
 
 import { translates } from '../../app.translates';
+import { environment } from '../../../environments/environment';
 import { LANGUAGES } from './language.const';
 import { LanguageOption } from './language.interface';
 import { LanguageCode } from './language.type';
@@ -15,20 +16,20 @@ export class LanguageService {
 	private readonly _storageKey = 'app-language';
 
 	readonly languages = signal<LanguageOption[]>(LANGUAGES);
+	private readonly _defaultLanguage = this.resolveDefaultLanguage();
 
-	readonly language = signal<LanguageCode>('en');
+	readonly language = signal<LanguageCode>(this._defaultLanguage);
 
-	init(): void {
+	init() {
 		const stored = this._isBrowser
 			? this._doc.defaultView?.localStorage.getItem(this._storageKey)
 			: null;
-		const fallback = this._doc.documentElement.lang === 'uk' ? 'ua' : 'en';
-		const language = this.isSupportedLanguage(stored) ? stored : fallback;
+		const language = this.isSupportedLanguage(stored) ? stored : this._defaultLanguage;
 
 		this.setLanguage(language);
 	}
 
-	setLanguage(language: LanguageCode): void {
+	setLanguage(language: LanguageCode) {
 		this.language.set(language);
 		this._translateService.setMany(this.buildTranslations(language));
 		this._doc.documentElement.lang = this.getLanguage(language).htmlLang;
@@ -38,12 +39,12 @@ export class LanguageService {
 		}
 	}
 
-	nextLanguage(): void {
+	nextLanguage() {
 		const languages = this.languages();
 		const currentIndex = languages.findIndex((language) => language.code === this.language());
 		const nextIndex = (currentIndex + 1) % languages.length;
 
-		this.setLanguage(languages[nextIndex]?.code ?? 'en');
+		this.setLanguage(languages[nextIndex]?.code ?? this._defaultLanguage);
 	}
 
 	getLanguage(code: LanguageCode): LanguageOption {
@@ -64,5 +65,11 @@ export class LanguageService {
 
 	private isSupportedLanguage(value: string | null | undefined): value is LanguageCode {
 		return this.languages().some((language) => language.code === value);
+	}
+
+	private resolveDefaultLanguage(): LanguageCode {
+		return this.isSupportedLanguage(environment.defaultLanguage)
+			? environment.defaultLanguage
+			: 'en';
 	}
 }

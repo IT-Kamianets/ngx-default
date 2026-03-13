@@ -41,29 +41,29 @@ export class TopbarComponent {
 
 	constructor() {
 		this._themeService.init();
-		this._languageService.init();
+		// this._languageService.init();
 	}
 
-	protected toggleMode(): void {
+	protected toggleMode() {
 		const nextMode = this.mode() === 'dark' ? 'light' : 'dark';
 		this._themeService.setMode(nextMode);
 	}
 
-	protected nextLanguage(): void {
+	protected nextLanguage() {
 		this._languageService.nextLanguage();
 		this.languageMenuOpen.set(false);
 	}
 
-	protected toggleLanguageMenu(): void {
+	protected toggleLanguageMenu() {
 		this.languageMenuOpen.update((open) => !open);
 	}
 
-	protected setLanguage(language: LanguageOption): void {
+	protected setLanguage(language: LanguageOption) {
 		this._languageService.setLanguage(language.code);
 		this.languageMenuOpen.set(false);
 	}
 
-	protected getNextLanguage(): LanguageOption {
+	protected getNextLanguage() {
 		const languages = this.languages();
 		const currentCode = this.currentLanguage().code;
 		const currentIndex = languages.findIndex((language) => language.code === currentCode);
