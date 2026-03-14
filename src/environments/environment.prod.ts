@@ -3,6 +3,7 @@ import { Item } from '../app/feature/item/item.interface';
 
 export const environment: {
 	apiUrl: string;
+	onApiFall: 'spinner' | 'app reload' | 'app';
 	appVersion: string;
 	production: boolean;
 	defaultLanguage: string;
@@ -11,6 +12,7 @@ export const environment: {
 	items: Item[];
 } = {
 	apiUrl: 'https://api.webart.work',
+	onApiFall: 'app',
 	appVersion: '1.0.0',
 	production: true,
 	defaultLanguage: 'ua',

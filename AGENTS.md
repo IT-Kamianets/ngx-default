@@ -64,6 +64,9 @@ This file defines repo-specific instructions for coding agents working in this p
 
 - Make the smallest coherent change that solves the task.
 - Preserve existing naming, structure, and visual language unless the task explicitly asks for redesign.
+- Prefix private class members with `_`, including variables, injected fields, and methods (for example, `private _platformId = inject(PLATFORM_ID)` and `private async _load()`).
+- Omit explicit function and method return types; rely on TypeScript inference unless a specific edge case forces an explicit annotation.
+- Order class members consistently: injected fields, public state, private state, constructor, public methods, private methods.
 - Avoid introducing new dependencies unless necessary.
 - If adding browser APIs, guard them for SSR compatibility.
 - Keep comments sparse and only where logic is not obvious.

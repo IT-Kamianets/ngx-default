@@ -54,6 +54,9 @@ Keep contributions aligned with the current template conventions described in [R
 - If the same signal read, computed value, or method call is used multiple times in a template, assign it with `@let`
 - Prefer short, clear comments only where intent is not obvious
 - Keep naming consistent with the existing codebase
+- Prefix private class members with `_`, including fields and methods
+- Omit explicit function and method return types; prefer inferred return types
+- Order class members consistently: injected fields, public state, private state, constructor, public methods, private methods
 - Respect `.editorconfig` and `.prettierrc`
 
 ## Before opening a PR

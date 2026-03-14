@@ -1,4 +1,5 @@
 import {
+	APP_INITIALIZER,
 	ApplicationConfig,
 	provideBrowserGlobalErrorListeners,
 	provideZonelessChangeDetection,
@@ -10,7 +11,11 @@ import { provideRouter } from '@angular/router';
 import { provideTranslate } from 'wacom';
 import { environment } from '../environments/environment';
 import { LanguageKey, translates } from '../i18n';
+import { BootstrapService } from './feature/bootstrap/bootstrap.service';
 import { routes } from './app.routes';
+
+const initializeBootstrapData = (bootstrapService: BootstrapService) => () =>
+	bootstrapService.initialize();
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -20,5 +25,11 @@ export const appConfig: ApplicationConfig = {
 		provideHttpClient(withFetch()),
 		provideClientHydration(withEventReplay()),
 		provideTranslate(translates[environment.defaultLanguage as LanguageKey]),
+		{
+			provide: APP_INITIALIZER,
+			useFactory: initializeBootstrapData,
+			deps: [BootstrapService],
+			multi: true,
+		},
 	],
 };

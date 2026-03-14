@@ -16,7 +16,7 @@ export class LanguageService {
 	private readonly _storageKey = 'app-language';
 
 	readonly languages = signal<LanguageOption[]>(LANGUAGES);
-	private readonly _defaultLanguage = this.resolveDefaultLanguage();
+	private readonly _defaultLanguage = this._resolveDefaultLanguage();
 
 	readonly language = signal<LanguageCode>(this._defaultLanguage);
 
@@ -24,14 +24,16 @@ export class LanguageService {
 		const stored = this._isBrowser
 			? this._doc.defaultView?.localStorage.getItem(this._storageKey)
 			: null;
-		const language = this.isSupportedLanguage(stored) ? stored : this._defaultLanguage;
+		const language = this._isSupportedLanguage(stored)
+			? (stored as LanguageCode)
+			: this._defaultLanguage;
 
 		this.setLanguage(language);
 	}
 
 	setLanguage(language: LanguageCode) {
 		this.language.set(language);
-		this._translateService.setMany(this.buildTranslations(language));
+		this._translateService.setMany(this._buildTranslations(language));
 		this._doc.documentElement.lang = this.getLanguage(language).htmlLang;
 
 		if (this._isBrowser) {
@@ -47,21 +49,21 @@ export class LanguageService {
 		this.setLanguage(languages[nextIndex]?.code ?? this._defaultLanguage);
 	}
 
-	getLanguage(code: LanguageCode): LanguageOption {
+	getLanguage(code: LanguageCode) {
 		return this.languages().find((language) => language.code === code) ?? this.languages()[0]!;
 	}
 
-	private buildTranslations(language: LanguageCode) {
+	private _buildTranslations(language: LanguageCode) {
 		return translates[language];
 	}
 
-	private isSupportedLanguage(value: string | null | undefined): value is LanguageCode {
+	private _isSupportedLanguage(value: string | null | undefined) {
 		return this.languages().some((language) => language.code === value);
 	}
 
-	private resolveDefaultLanguage(): LanguageCode {
-		return this.isSupportedLanguage(environment.defaultLanguage)
-			? environment.defaultLanguage
+	private _resolveDefaultLanguage() {
+		return this._isSupportedLanguage(environment.defaultLanguage)
+			? (environment.defaultLanguage as LanguageCode)
 			: 'en';
 	}
 }
