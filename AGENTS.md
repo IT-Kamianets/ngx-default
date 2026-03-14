@@ -68,6 +68,7 @@ This file defines repo-specific instructions for coding agents working in this p
 - In component TypeScript, use `TranslateService.translate('Key')()` inside `computed()` or other reactive reads when the value is needed for class state, ARIA labels, or composed strings.
 - Keep translation bootstrap and language switching on the existing `provideTranslate(...)` and `TranslateService.setMany(...)` path; do not hand-roll parallel translation registries.
 - Do not introduce a second translation source such as `src/app/app.translates.ts`; use `src/i18n` as the single source of truth.
+- When removing code, check whether its translation keys are still used elsewhere in the app; if a key is no longer referenced anywhere, remove it from the translation dictionaries as part of the same change.
 - Preserve native language characters as UTF-8 text; do not introduce mojibake such as `FranÃ§ais`.
 - When adding a language, update the new `src/i18n/<code>.ts` file, `src/i18n/index.ts`, and the language metadata files.
 

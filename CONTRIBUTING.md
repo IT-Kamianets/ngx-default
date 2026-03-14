@@ -51,6 +51,7 @@ Keep contributions aligned with the current template conventions described in [R
 - In component TypeScript, use `TranslateService.translate('Key')()` inside reactive code such as `computed()` when you need translated labels in TS
 - Keep bootstrap and language switching on the existing `provideTranslate(...)` and `TranslateService.setMany(...)` path
 - Do not add another translation registry such as `src/app/app.translates.ts`; `src/i18n` is the source of truth
+- When removing code, check whether its translation keys are still used elsewhere; if a key is no longer referenced anywhere in the app, remove it from the translation dictionaries in the same change
 - If you add a language, update `src/i18n/<code>.ts`, `src/i18n/index.ts`, `LanguageCode`, and `LANGUAGES`
 - Save translation files as UTF-8 and use proper native characters for labels and translated text
 - Do not replace native characters with mojibake, HTML entities, or ad hoc transliterations
