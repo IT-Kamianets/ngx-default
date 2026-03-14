@@ -41,10 +41,17 @@ Keep contributions aligned with the current template conventions described in [R
 
 ## Translations
 
-- UI translation entries live in `src/app/app.translates.ts`
+- This repo uses the `wacom` translation stack: `provideTranslate`, `TranslateService`, `TranslatePipe`, and `Translate`
+- Translation dictionaries live in `src/i18n/<code>.ts` and are aggregated in `src/i18n/index.ts`
 - Language metadata lives in `src/app/feature/language/language.type.ts`, `language.interface.ts`, `language.const.ts`, and `language.service.ts`
 - Keep translation keys aligned with the English source text used in templates and components
-- If you add a language, update both `LanguageCode` and `LANGUAGES`
+- Use one of these three patterns only:
+- Prefer the `translate` directive for plain element text content. Use `[translate]` for an explicit key or bare `translate` when the element text is the key
+- Use the pipe for interpolations and attribute bindings: `{{ 'Key' | translate }}` or `[aria-label]="'Key' | translate"`
+- In component TypeScript, use `TranslateService.translate('Key')()` inside reactive code such as `computed()` when you need translated labels in TS
+- Keep bootstrap and language switching on the existing `provideTranslate(...)` and `TranslateService.setMany(...)` path
+- Do not add another translation registry such as `src/app/app.translates.ts`; `src/i18n` is the source of truth
+- If you add a language, update `src/i18n/<code>.ts`, `src/i18n/index.ts`, `LanguageCode`, and `LANGUAGES`
 - Save translation files as UTF-8 and use proper native characters for labels and translated text
 - Do not replace native characters with mojibake, HTML entities, or ad hoc transliterations
 
@@ -65,5 +72,6 @@ Keep contributions aligned with the current template conventions described in [R
 - Check that styling uses shared theme variables where applicable
 - Check that dark mode still works
 - Check that the change does not break SSR or prerender assumptions
+- Check that translated strings still resolve through the expected pipe/service/provider path
 - Check that any edited translations still render as proper native characters in the UI
 - Keep documentation updated when project conventions or structure change

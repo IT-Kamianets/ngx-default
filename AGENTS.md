@@ -31,7 +31,8 @@ This file defines repo-specific instructions for coding agents working in this p
 - Layout components: `src/app/layouts/`
 - Shared generic UI/components/services/pipes/directives/interfaces: `src/app/<type>/`
 - Feature-specific business logic: `src/app/feature/<feature-name>/`
-- Translation entries: `src/app/app.translates.ts`
+- Translation dictionaries: `src/i18n/<language>.ts`
+- Translation registry: `src/i18n/index.ts`
 - Language feature metadata: `src/app/feature/language/language.type.ts`, `language.interface.ts`, `language.const.ts`
 - Global theme tokens: `src/styles/_theme.scss`
 - Global styles entry: `src/styles.scss`
@@ -54,11 +55,21 @@ This file defines repo-specific instructions for coding agents working in this p
 
 ## Translations And Encoding
 
+- This project uses the `wacom` translation stack: `provideTranslate`, `TranslateService`, `TranslatePipe`, and `Translate`.
+- Default translations are registered in `src/app/app.config.ts` with `provideTranslate(translates[...])`.
+- Per-language dictionaries live in `src/i18n/<code>.ts` and are aggregated in `src/i18n/index.ts`.
 - Keep language codes in sync with `src/app/feature/language/language.type.ts`.
 - Keep language labels in `src/app/feature/language/language.const.ts`.
-- Keep UI translation strings in `src/app/app.translates.ts`.
+- Keep `src/i18n/index.ts` in sync with the available language files.
+- Prefer English source text as the translation key and keep that source text identical across templates, components, and `src/i18n/*`.
+- There are three supported translation usage patterns in app code:
+- Prefer the `translate` directive for plain element text content in templates. Use `[translate]` for an explicit key, or bare `translate` when the source text itself is the key.
+- Use the `translate` pipe for interpolations and attribute bindings such as `{{ 'Go to homepage' | translate }}` or `[aria-label]="'Go to homepage' | translate"`.
+- In component TypeScript, use `TranslateService.translate('Key')()` inside `computed()` or other reactive reads when the value is needed for class state, ARIA labels, or composed strings.
+- Keep translation bootstrap and language switching on the existing `provideTranslate(...)` and `TranslateService.setMany(...)` path; do not hand-roll parallel translation registries.
+- Do not introduce a second translation source such as `src/app/app.translates.ts`; use `src/i18n` as the single source of truth.
 - Preserve native language characters as UTF-8 text; do not introduce mojibake such as `FranÃ§ais`.
-- When adding a language, update both the language metadata files and the translation map.
+- When adding a language, update the new `src/i18n/<code>.ts` file, `src/i18n/index.ts`, and the language metadata files.
 
 ## Code Change Guidance
 
