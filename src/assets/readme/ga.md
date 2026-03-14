@@ -1,0 +1,626 @@
+# Teimpléad Leathanach Tuirlingthe Angular (SSR + Prerender)
+
+Teimpléad tosaigh nua-aimseartha Angular 21 chun leathanaigh tuirlingthe thapa a thógáil le
+**prerender SSR**, **TailwindCSS**, agus **imscaradh GitHub Pages**.
+
+Tá an teimpléad seo optamaithe do shuímh thuirlingthe statacha ina rindreáiltear leathanaigh
+**ag am tógála** le haghaidh SEO agus feidhmíochta.
+
+---
+
+# Príomhghnéithe
+
+- Angular **21**
+- **Prerender SSR** le linn an build
+- **Angular gan zones**
+- Ba chóir staid a úsáidtear i `class` bindings HTML a nochtadh mar **signals**
+- Is fearr **Angular Signal Forms** mar phríomhchur chuige agus foirmeacha nua á dtógáil
+- **OnPush change detection by default**
+- **TailwindCSS v4**
+- Úsáid na **theme CSS variables** comhroinnte ó `src/styles/_theme.scss` le haghaidh dathanna,
+  dromchlaí, spásála, ga agus gluaisne
+- **Imscaradh GitHub Pages**
+- **Formáidiú Prettier**
+- Struchtúr tionscadail glan agus íosta
+
+Tógann an tionscadal an dá aschur:
+
+```
+dist/app/browser
+dist/app/server
+```
+
+Ach úsáideann an t-imscaradh an **t-aschur brabhsálaí prerenderáilte**, rud a fhágann go bhfuil sé
+foirfe d'óstáil statach.
+
+---
+
+# Struchtúr an tionscadail
+
+```
+src/
+  app/
+    app.component.ts
+    app.config.ts
+    app.config.server.ts
+    app.routes.ts
+    app.routes.server.ts
+    layouts/
+    pages/
+  assets/
+  environments/
+  styles/
+  styles.scss
+```
+
+Tá cumraíocht SSR lonnaithe i:
+
+```
+app.config.server.ts
+app.routes.server.ts
+```
+
+---
+
+# Forbairt
+
+Tosaigh an freastalaí forbartha:
+
+```
+npm start
+```
+
+nó
+
+```
+ng serve
+```
+
+Ritheann an feidhmchlár ag [http://localhost:4200](http://localhost:4200)
+
+Sa mhodh forbartha ritheann sé mar ghnáth-Angular SPA.
+
+---
+
+# Build
+
+Tóg an tionscadal:
+
+```
+npm run build
+```
+
+Gineann sé seo:
+
+```
+dist/app/browser
+dist/app/server
+```
+
+Déantar leathanaigh a **prerenderáil ag am tógála** le Angular SSR.
+
+---
+
+# An freastalaí SSR a rith (roghnach)
+
+Tá freastalaí Node don SSR san áireamh sa teimpléad:
+
+```
+npm run serve:ssr:app
+```
+
+Ritheann sé seo:
+
+```
+node dist/app/server/server.mjs
+```
+
+I gcás fhormhór na leathanach tuirlingthe níl sé seo **riachtanach**, mar go ngintear HTML
+prerenderáilte cheana féin.
+
+---
+
+# Cumraíocht prerender
+
+Déantar gach route a prerenderáil de réir réamhshocraithe:
+
+```
+src/app/app.routes.server.ts
+```
+
+```
+RenderMode.Prerender
+```
+
+```ts
+export const serverRoutes: ServerRoute[] = [
+	{
+		path: '**',
+		renderMode: RenderMode.Prerender,
+	},
+];
+```
+
+Cuireann sé seo ar chumas Angular HTML statach a ghiniúint do gach route le linn an build.
+
+---
+
+# TailwindCSS
+
+Tá Tailwind cumraithe trí:
+
+```
+.postcssrc.json
+```
+
+Ba cheart Tailwind a úsáid oiread agus is féidir don ghnáthobair UI.
+
+Is fearr utilities Tailwind do:
+
+- layout
+- spacing
+- typography
+- colors
+- borders
+- sizing
+- responsive behavior
+
+Úsáid SCSS amháin nuair nach é Tailwind an uirlis cheart, mar shampla do:
+
+- stíliú casta sonrach do chomhpháirteanna
+- design tokens agus mixins comhroinnte
+- staideanna nó selectors ardleibhéil
+- méid beag de stíliú domhanda
+
+Tá na stíleanna domhanda lonnaithe i:
+
+```
+src/styles.scss
+```
+
+---
+
+# Deilbhíní
+
+Áiríonn an teimpléad seo **Material Symbols Outlined** agus ba chóir iad a úsáid mar an tacar
+deilbhíní réamhshocraithe ar fud an tionscadail.
+
+Luchtaithe i:
+
+```
+src/index.html
+```
+
+Úsáid deilbhíní go díreach in HTML mar seo:
+
+```html
+<span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+```
+
+Le haghaidh cnaipí inrochtana, coinnigh an deilbhín maisiúil agus cuir lipéad téacs nó
+`aria-label` ar an gcnaipe féin:
+
+```html
+<button type="button" aria-label="Open menu">
+	<span class="material-symbols-outlined" aria-hidden="true">menu</span>
+</button>
+```
+
+---
+
+# Aistriúcháin agus teangacha
+
+Tá aistriúcháin UI lonnaithe faoi láthair i:
+
+```text
+src/app/app.translates.ts
+```
+
+Tá metadata teanga lonnaithe i:
+
+```text
+src/app/feature/language/language.type.ts
+src/app/feature/language/language.interface.ts
+src/app/feature/language/language.const.ts
+src/app/feature/language/language.service.ts
+```
+
+Agus aistriúcháin á gcur leis nó á nuashonrú:
+
+- coinnigh cóid teanga ailínithe le `LanguageCode`
+- nuashonraigh `LANGUAGES` agus teanga thacaithe á cur leis nó á hathainmniú
+- stóráil téacs aistriúcháin agus lipéid teanga mar fhíorcharachtair UTF-8, ní mar
+  theachtair éalaithe ná mar mojibake athchódaithe
+- coinnigh na teaghráin fhoinse Bhéarla cobhsaí mura bhfuil sé i gceist agat gach iontráil a nuashonrú
+
+---
+
+# Coinbhinsiúin SCSS
+
+Úsáid SCSS ar bhealach a mheaitseálann réamhshocruithe nua-aimseartha Angular:
+
+- Coinnigh formhór na stíleanna taobh istigh de chomhad `.scss` an chomhpháirt.
+- Ná húsáid `src/styles.scss` ach do stíleanna fíordhomhanda cosúil le resets, tokens,
+  clóghrafaíocht, agus layers fóntais.
+- Is fearr CSS variables do dhathanna, spásáil, agus téamaí a d'fhéadfadh athrú ag am rite.
+- Úsáid gnéithe SCSS mar `@use`, mixins, agus partials ar mhaithe le húdarú níos éasca agus
+  design tokens comhroinnte.
+- Seachain selector nesting domhain. Coinnigh selectors simplí agus áitiúil don chomhpháirt.
+- Seachain `::ng-deep` agus `ViewEncapsulation.None` mura bhfuil cúis shoiléir chomhtháthaithe ann.
+- Is fearr class bindings i dteimpléid ná inline style bindings troma.
+
+Roinnt mholta:
+
+```text
+src/styles.scss           -> point iontrála domhanda
+src/app/**/**/*.scss      -> stíleanna áitiúla comhpháirte
+src/styles/_theme.scss    -> theme CSS variables comhroinnte
+```
+
+---
+
+# Environments
+
+Áiríonn an teimpléad seo comhaid environment Angular agus is féidir iad a úsáid do
+shocruithe éagsúla rite cosúil le forbairt áitiúil agus builds táirgthe.
+
+Comhaid atá ar fáil:
+
+```text
+src/environments/environment.ts
+src/environments/environment.prod.ts
+```
+
+Gnáthchásanna úsáide:
+
+- bunchonairí API
+- feature flags
+- lasca anailíse
+- cumraíocht seirbhísí seachtracha
+
+Cuireann builds táirgthe `environment.prod.ts` in ionad `environment.ts` trí Angular file replacements.
+
+Coinnigh comhaid environment teoranta do chumraíocht phoiblí an front-end. Ná stóráil rúin iontu.
+
+---
+
+# Imscaradh
+
+Déantar an t-imscaradh go huathoibríoch le **GitHub Actions**.
+
+Workflow:
+
+```
+.github/workflows/deploy.yml
+```
+
+Céimeanna:
+
+1. Spleáchais a shuiteáil
+2. An aip Angular a thógáil
+3. `CNAME` a chóipeáil
+4. Aschur an build a bhrú chuig `gh-pages`
+
+Is í an fillteán imscartha:
+
+```
+dist/app/browser
+```
+
+---
+
+# Fearann
+
+Fearann saincheaptha ba chóir duit a choigeartú do d'fhearann féin ionas go n-oibreoidh sé i gceart;
+tá aon fho-fhearann de `*.itkamianets.com` bailí mura bhfuil sé in úsáid cheana inár n-eagraíocht GitHub.
+
+```
+ngx.itkamianets.com
+```
+
+Cumraithe trí:
+
+```
+CNAME
+```
+
+---
+
+# Stíl chóid
+
+Déantar formáidiú a láimhseáil le:
+
+- `.editorconfig`
+- `.prettierrc`
+
+Príomhchoinbhinsiúin:
+
+- **tabs**
+- **single quotes**
+- **100 character line width**
+
+---
+
+# Úsáid AI
+
+Má úsáideann tú AI taobh amuigh den IDE agus mura léann sé treoracha an stórais go huathoibríoch,
+cóipeáil ábhar `AGENTS.md` isteach sa phrompt/comhthéacs ar dtús.
+
+Cinntíonn sé sin go leanann an AI na rialacha tionscadail céanna a úsáideann Codex taobh istigh den IDE.
+
+---
+
+# Scripteanna NPM
+
+Tosaigh forbairt:
+
+```
+npm start
+```
+
+Tóg an tionscadal:
+
+```
+npm run build
+```
+
+Rith an freastalaí SSR:
+
+```
+npm run serve:ssr:app
+```
+
+---
+
+# Riachtanais
+
+Timpeallacht mholta:
+
+```
+Node.js 20+
+npm 11+
+```
+
+---
+
+# Treoir struchtúir an chóid
+
+## Pages
+
+Ba chóir pages an fheidhmchláir a chruthú laistigh de:
+
+```text
+src/app/pages/
+```
+
+Ba chóir a fillteán agus a chomhad comhpháirte féin a bheith ag gach page.
+
+Sampla:
+
+```text
+src/app/pages/home/home.component.ts
+src/app/pages/about/about.component.ts
+```
+
+Gin comhpháirt page leis an Angular CLI:
+
+```bash
+ng generate component pages/home
+```
+
+nó níos giorra:
+
+```bash
+ng g c pages/home
+```
+
+Ba chóir pages a bheith lazy loaded ó `src/app/app.routes.ts`.
+
+Sampla de route config:
+
+```ts
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+	{
+		path: '',
+		loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
+	},
+	{
+		path: 'about',
+		loadComponent: () => import('./pages/about/about.component').then((m) => m.AboutComponent),
+	},
+];
+```
+
+---
+
+## Struchtúr feature do mhodúil atá ceangailte leis an back-end
+
+Má theastaíonn a loighic ghnó féin agus comhtháthú back-end ó chuid den aip, cruthaigh
+fillteán feature tiomnaithe laistigh de:
+
+```text
+src/app/feature/
+```
+
+Ba chóir do gach feature a struchtúr inmheánach féin a choinneáil.
+
+Sampla:
+
+```text
+src/app/feature/user/
+src/app/feature/user/components/
+src/app/feature/user/directives/
+src/app/feature/user/interfaces/
+src/app/feature/user/pages/
+src/app/feature/user/pipes/
+src/app/feature/user/services/
+```
+
+Suíomh samplach seirbhíse:
+
+```text
+src/app/feature/user/services/user.service.ts
+```
+
+Orduithe CLI molta:
+
+Cruthaigh page feature:
+
+```bash
+ng g c feature/user/pages/user-profile
+```
+
+Cruthaigh comhpháirt feature:
+
+```bash
+ng g c feature/user/components/user-card
+```
+
+Cruthaigh directive feature:
+
+```bash
+ng g d feature/user/directives/user-focus
+```
+
+Cruthaigh pipe feature:
+
+```bash
+ng g p feature/user/pipes/user-name
+```
+
+Cruthaigh seirbhís feature:
+
+```bash
+ng g s feature/user/services/user
+```
+
+De ghnáth cruthaítear interfaces de láimh:
+
+```text
+src/app/feature/user/interfaces/user.interface.ts
+src/app/feature/user/interfaces/user-response.interface.ts
+```
+
+Le haghaidh features beaga dírithe, tá comhaid lonnaithe le chéile cosúil le
+`feature/language/language.type.ts`, `language.interface.ts`, `language.const.ts`,
+agus `language.service.ts` bailí freisin má choinníonn an struchtúr sin an feature níos simplí.
+
+---
+
+## Cód comhroinnte ginearálta
+
+Is féidir cód ginearálta in-athúsáidte nach mbaineann le feature ar leith a chur go díreach faoi `src/app`.
+
+Samplaí d'fhillteáin chomhroinnte:
+
+```text
+src/app/components/
+src/app/directives/
+src/app/interfaces/
+src/app/pipes/
+src/app/services/
+```
+
+Suíomh samplach pipe comhroinnte:
+
+```text
+src/app/pipes/phone.pipe.ts
+```
+
+Orduithe CLI molta:
+
+Cruthaigh comhpháirt chomhroinnte:
+
+```bash
+ng g c components/page-header
+```
+
+Cruthaigh directive chomhroinnte:
+
+```bash
+ng g d directives/autofocus
+```
+
+Cruthaigh pipe comhroinnte:
+
+```bash
+ng g p pipes/phone
+```
+
+Cruthaigh seirbhís chomhroinnte:
+
+```bash
+ng g s services/api
+```
+
+De ghnáth cruthaítear interfaces de láimh:
+
+```text
+src/app/interfaces/api-response.interface.ts
+src/app/interfaces/select-option.interface.ts
+```
+
+---
+
+## Achoimre forbartha
+
+Úsáid na suíomhanna seo de réir réamhshocraithe:
+
+- `src/app/pages` - pages leibhéal aipe a lódáiltear go mall
+- `src/app/feature/<name>` - cód feature-shonrach le loighic ghnó/back-end
+- `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - cód ginearálta comhroinnte
+
+# Cruthaigh tionscadal nua ón teimpléad seo
+
+Clónaigh an stór réamhshocraithe isteach i bhfillteán nua le hainm do thionscadail
+(cuir ainm do thionscadail in ionad `PROJECT_NAME`):
+
+```bash
+git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME
+cd PROJECT_NAME
+npm i
+npm run start
+```
+
+### Cad a dhéanann na horduithe seo
+
+- `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
+  Íoslódálann sé stór an teimpléid agus cruthaíonn sé fillteán áitiúil darb ainm `PROJECT_NAME`.
+- `cd PROJECT_NAME`
+  Osclaíonn sé an fillteán tionscadail nuachruthaithe.
+- `npm i`
+  Suiteálann sé spleáchais uile an tionscadail ó `package.json`.
+- `npm run start`
+  Tosaíonn sé an freastalaí forbartha áitiúil.
+
+Ina dhiaidh sin, oscail an URL áitiúil a thaispeántar sa teirminéal, de ghnáth [http://localhost:4200](http://localhost:4200)
+
+## Tionscnaigh do stór git féin
+
+Más mian leat tosú as an nua seachas stair git an teimpléid a choinneáil, bain an fillteán `.git`,
+tionscnaigh stór nua, agus cruthaigh an chéad commit.
+
+Sampla:
+
+```bash
+rm -rf .git
+git init
+git remote add origin https://github.com/IT-Kamianets/PROJECT_NAME.git
+git add .
+git commit -m "chore(init): bootstrap project from ngx-default template"
+```
+
+Ceanglaíonn `git remote add origin ...` do stór áitiúil leis an stór iargúlta GitHub ionas go mbeidh a fhios ag
+`git push` agus `git pull` amach anseo cá bhfuil do phríomhthionscadal.
+
+Úsáid teachtaireacht Conventional Commit don chéad commit freisin. Réamhshocrú maith ná:
+
+```text
+chore(init): bootstrap project from ngx-default template
+```
+
+# Ceadúnas
+
+MIT

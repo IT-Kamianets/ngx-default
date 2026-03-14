@@ -35,4 +35,6 @@ loadBootstrapConfig()
 			appRef.injector.get(ItemService).items.set(config.items);
 		}
 	})
-	.catch((err) => console.error(err));
+	.catch((err) => {
+		console.error(err);
+	});
