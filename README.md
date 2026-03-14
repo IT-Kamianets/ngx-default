@@ -203,10 +203,11 @@ For accessible buttons, keep the icon decorative and provide a text label or `ar
 
 # Translations And Languages
 
-UI translations currently live in:
+UI translations live in:
 
 ```text
-src/app/app.translates.ts
+src/i18n/<code>.ts
+src/i18n/index.ts
 ```
 
 Language metadata lives in:
