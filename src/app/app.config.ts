@@ -8,6 +8,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideTranslate } from 'wacom';
+import { environment } from '../environments/environment';
+import { LanguageKey, translates } from '../i18n';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -17,6 +19,6 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes),
 		provideHttpClient(withFetch()),
 		provideClientHydration(withEventReplay()),
-		provideTranslate(),
+		provideTranslate(translates[environment.defaultLanguage as LanguageKey]),
 	],
 };

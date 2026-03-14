@@ -1,9 +1,9 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
-import { Translate, TranslateService } from 'wacom';
+import { TranslateService } from 'wacom';
 
-import { translates } from '../../app.translates';
 import { environment } from '../../../environments/environment';
+import { translates } from '../../../i18n';
 import { LANGUAGES } from './language.const';
 import { LanguageOption } from './language.interface';
 import { LanguageCode } from './language.type';
@@ -51,16 +51,8 @@ export class LanguageService {
 		return this.languages().find((language) => language.code === code) ?? this.languages()[0]!;
 	}
 
-	private buildTranslations(language: LanguageCode): Translate[] {
-		if (language === 'en') {
-			return [];
-		}
-
-		return Object.entries(translates).flatMap(([sourceText, translationMap]) => {
-			const text = translationMap[language];
-
-			return text ? [{ sourceText, text }] : [];
-		});
+	private buildTranslations(language: LanguageCode) {
+		return translates[language];
 	}
 
 	private isSupportedLanguage(value: string | null | undefined): value is LanguageCode {

@@ -41,7 +41,7 @@ export class TopbarComponent {
 
 	constructor() {
 		this._themeService.init();
-		// this._languageService.init();
+		this._languageService.init();
 	}
 
 	protected toggleMode() {
