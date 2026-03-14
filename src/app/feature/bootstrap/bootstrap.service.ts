@@ -1,5 +1,5 @@
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Injectable, inject, PLATFORM_ID, TransferState } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, TransferState } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { CompanyService } from '../company/company.service';
 import { ItemService } from '../item/item.service';
@@ -16,7 +16,10 @@ export class BootstrapService {
 	private _itemService = inject(ItemService);
 
 	async initialize() {
-		const transferData = this._transferState.get<BootstrapData | null>(BOOTSTRAP_STATE_KEY, null);
+		const transferData = this._transferState.get<BootstrapData | null>(
+			BOOTSTRAP_STATE_KEY,
+			null,
+		);
 
 		if (transferData) {
 			this._apply(transferData);

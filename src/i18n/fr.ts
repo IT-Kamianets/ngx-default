@@ -1,11 +1,11 @@
 import { Translate } from 'wacom';
 
 export const fr = {
-	"Go to homepage": "Aller à la page d'accueil",
-	"Switch to dark mode": "Passer en mode sombre",
-	"Switch to light mode": "Passer en mode clair",
-	"Open language menu": "Ouvrir le menu des langues",
-	"Switch language to": "Passer la langue à",
+	'Go to homepage': "Aller à la page d'accueil",
+	'Switch to dark mode': 'Passer en mode sombre',
+	'Switch to light mode': 'Passer en mode clair',
+	'Open language menu': 'Ouvrir le menu des langues',
+	'Switch language to': 'Passer la langue à',
 } as const;
 
 export type FrTranslationKey = keyof typeof fr;

@@ -1,11 +1,11 @@
 import { Translate } from 'wacom';
 
 export const sv = {
-	"Go to homepage": "Gå till startsidan",
-	"Switch to dark mode": "Byt till mörkt läge",
-	"Switch to light mode": "Byt till ljust läge",
-	"Open language menu": "Öppna språkmenyn",
-	"Switch language to": "Byt språk till",
+	'Go to homepage': 'Gå till startsidan',
+	'Switch to dark mode': 'Byt till mörkt läge',
+	'Switch to light mode': 'Byt till ljust läge',
+	'Open language menu': 'Öppna språkmenyn',
+	'Switch language to': 'Byt språk till',
 } as const;
 
 export type SvTranslationKey = keyof typeof sv;

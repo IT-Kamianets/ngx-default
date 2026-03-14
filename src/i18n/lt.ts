@@ -1,11 +1,11 @@
 import { Translate } from 'wacom';
 
 export const lt = {
-	"Go to homepage": "Eiti į pagrindinį puslapį",
-	"Switch to dark mode": "Perjungti į tamsųjį režimą",
-	"Switch to light mode": "Perjungti į šviesųjį režimą",
-	"Open language menu": "Atidaryti kalbų meniu",
-	"Switch language to": "Perjungti kalbą į",
+	'Go to homepage': 'Eiti į pagrindinį puslapį',
+	'Switch to dark mode': 'Perjungti į tamsųjį režimą',
+	'Switch to light mode': 'Perjungti į šviesųjį režimą',
+	'Open language menu': 'Atidaryti kalbų meniu',
+	'Switch language to': 'Perjungti kalbą į',
 } as const;
 
 export type LtTranslationKey = keyof typeof lt;

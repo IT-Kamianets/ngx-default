@@ -1,11 +1,11 @@
 import { Translate } from 'wacom';
 
 export const nl = {
-	"Go to homepage": "Ga naar de homepage",
-	"Switch to dark mode": "Schakel naar donkere modus",
-	"Switch to light mode": "Schakel naar lichte modus",
-	"Open language menu": "Taalmenu openen",
-	"Switch language to": "Taal wijzigen naar",
+	'Go to homepage': 'Ga naar de homepage',
+	'Switch to dark mode': 'Schakel naar donkere modus',
+	'Switch to light mode': 'Schakel naar lichte modus',
+	'Open language menu': 'Taalmenu openen',
+	'Switch language to': 'Taal wijzigen naar',
 } as const;
 
 export type NlTranslationKey = keyof typeof nl;

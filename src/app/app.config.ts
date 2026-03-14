@@ -11,8 +11,8 @@ import { provideRouter } from '@angular/router';
 import { provideTranslate } from 'wacom';
 import { environment } from '../environments/environment';
 import { LanguageKey, translates } from '../i18n';
-import { BootstrapService } from './feature/bootstrap/bootstrap.service';
 import { routes } from './app.routes';
+import { BootstrapService } from './feature/bootstrap/bootstrap.service';
 
 const initializeBootstrapData = (bootstrapService: BootstrapService) => () =>
 	bootstrapService.initialize();

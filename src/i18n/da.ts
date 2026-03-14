@@ -1,11 +1,11 @@
 import { Translate } from 'wacom';
 
 export const da = {
-	"Go to homepage": "Gå til forsiden",
-	"Switch to dark mode": "Skift til mørk tilstand",
-	"Switch to light mode": "Skift til lys tilstand",
-	"Open language menu": "Åbn sprogmenuen",
-	"Switch language to": "Skift sprog til",
+	'Go to homepage': 'Gå til forsiden',
+	'Switch to dark mode': 'Skift til mørk tilstand',
+	'Switch to light mode': 'Skift til lys tilstand',
+	'Open language menu': 'Åbn sprogmenuen',
+	'Switch language to': 'Skift sprog til',
 } as const;
 
 export type DaTranslationKey = keyof typeof da;
