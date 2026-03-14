@@ -1,4 +1,4 @@
-# Angular Landing Template (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Modern Angular 21 kezdősablon gyors landing page-ek készítéséhez **SSR prerendering**, **TailwindCSS** és **GitHub Pages deployment** támogatással.
 

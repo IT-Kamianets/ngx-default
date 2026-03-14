@@ -1,4 +1,4 @@
-# Angular šablona pro landing stránky (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Moderní výchozí šablona Angular 21 pro tvorbu rychlých landing pages se **SSR prerenderingem**, **TailwindCSS** a **deployem na GitHub Pages**.
 
@@ -6,7 +6,7 @@ Tato šablona je optimalizovaná pro statické landing weby, kde se stránky ren
 
 ---
 
-# Základní zásady
+# Acknowledge
 
 - Angular **21**
 - **SSR prerendering** během buildu
@@ -31,7 +31,7 @@ Pro deployment se ale používá **browser prerendered output**, což je ideáln
 
 ---
 
-# Struktura projektu
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Vývoj
+# Development
 
 Spusťte development server:
 
@@ -97,7 +97,7 @@ Stránky jsou **prerendered at build time** pomocí Angular SSR.
 
 ---
 
-# Spuštění SSR serveru (volitelné)
+# Running the SSR server (optional)
 
 Šablona obsahuje Node server pro SSR:
 
@@ -115,7 +115,7 @@ Pro většinu landing pages to **není potřeba**, protože prerendered HTML už
 
 ---
 
-# Konfigurace prerenderu
+# Prerender configuration
 
 Všechny routes jsou prerenderované ve výchozím nastavení:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Ikony
+# Icons
 
 Tato šablona obsahuje **Material Symbols Outlined** a měly by se používat jako standardní sada ikon v celém projektu.
 
@@ -201,7 +201,7 @@ U přístupných tlačítek ponechte ikonu dekorativní a přidejte textový pop
 
 ---
 
-# Překlady a jazyky
+# Translations And Languages
 
 UI překlady jsou aktuálně umístěné v:
 
@@ -227,7 +227,7 @@ Při přidávání nebo aktualizaci translations:
 
 ---
 
-# SCSS konvence
+# SCSS Conventions
 
 Používejte SCSS způsobem, který odpovídá moderním Angular defaults:
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Doména
+# Domain
 
 Vlastní doména, kterou byste měli změnit na svou, aby vše fungovalo správně; může to být jakýkoli subdoménový tvar `*.itkamianets.com`, pokud se ještě nepoužívá v naší GitHub organizaci.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Styl kódu
+# Code Style
 
 Formátování se provádí přes:
 
@@ -329,7 +329,7 @@ Klíčová pravidla:
 
 ---
 
-# Použití AI
+# AI Usage
 
 Pokud používáte AI mimo IDE a nečte automaticky instrukce repozitáře, nejprve zkopírujte obsah `AGENTS.md` do prompt/contextu AI.
 
@@ -337,7 +337,7 @@ Tím zajistíte, že AI bude dodržovat stejná projektová pravidla, která Cod
 
 ---
 
-# NPM skripty
+# NPM Scripts
 
 Spuštění developmentu:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Požadavky
+# Requirements
 
 Doporučené prostředí:
 
@@ -370,7 +370,7 @@ npm 11+
 
 ---
 
-# Průvodce strukturou kódu
+# Code structure guide
 
 ## Pages
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Feature struktura pro moduly napojené na back-end
+## Feature structure for back-end connected modules
 
 Pokud některá část app potřebuje vlastní business logic a back-end integraci, vytvořte samostatnou feature složku v:
 
@@ -493,7 +493,7 @@ Pro malé zaměřené features jsou přijatelné i colocated soubory jako `featu
 
 ---
 
-## Sdílený obecný kód
+## Generic shared code
 
 Obecný reusable kód, který není svázaný s jednou konkrétní feature, může být umístěný přímo v `src/app`.
 
@@ -548,7 +548,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Shrnutí vývoje
+## Development summary
 
 Používejte tato umístění jako výchozí:
 
@@ -556,7 +556,7 @@ Používejte tato umístění jako výchozí:
 - `src/app/feature/<name>` - feature-specific code with back-end/business logic
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - generic shared code
 
-# Vytvoření nového projektu z této šablony
+# Create a new project from this template
 
 Naklonujte default repository do nové složky s názvem svého projektu (nahraďte `PROJECT_NAME` názvem svého projektu):
 
@@ -567,7 +567,7 @@ npm i
 npm run start
 ```
 
-### Co tyto příkazy dělají
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Stáhne template repository a vytvoří lokální složku s názvem `PROJECT_NAME`.
@@ -580,7 +580,7 @@ npm run start
 
 Poté otevřete lokální URL zobrazené v terminálu, obvykle [http://localhost:4200](http://localhost:4200)
 
-## Inicializujte vlastní git repository
+## Initialize your own git repository
 
 Pokud chcete začít zcela čistě místo zachování git history šablony, smažte existující složku `.git`, inicializujte nový repository a vytvořte první commit.
 
@@ -602,6 +602,6 @@ Pro první commit také používejte Conventional Commit message. Dobrý standar
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licence
+# License
 
 MIT

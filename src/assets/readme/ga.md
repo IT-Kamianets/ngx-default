@@ -1,4 +1,4 @@
-# Teimpléad Leathanach Tuirlingthe Angular (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Teimpléad tosaigh nua-aimseartha Angular 21 chun leathanaigh tuirlingthe thapa a thógáil le
 **prerender SSR**, **TailwindCSS**, agus **imscaradh GitHub Pages**.
@@ -8,7 +8,7 @@ Tá an teimpléad seo optamaithe do shuímh thuirlingthe statacha ina rindreáil
 
 ---
 
-# Príomhghnéithe
+# Acknowledge
 
 - Angular **21**
 - **Prerender SSR** le linn an build
@@ -35,7 +35,7 @@ foirfe d'óstáil statach.
 
 ---
 
-# Struchtúr an tionscadail
+# Project Structure
 
 ```
 src/
@@ -62,7 +62,7 @@ app.routes.server.ts
 
 ---
 
-# Forbairt
+# Development
 
 Tosaigh an freastalaí forbartha:
 
@@ -101,7 +101,7 @@ Déantar leathanaigh a **prerenderáil ag am tógála** le Angular SSR.
 
 ---
 
-# An freastalaí SSR a rith (roghnach)
+# Running the SSR server (optional)
 
 Tá freastalaí Node don SSR san áireamh sa teimpléad:
 
@@ -120,7 +120,7 @@ prerenderáilte cheana féin.
 
 ---
 
-# Cumraíocht prerender
+# Prerender configuration
 
 Déantar gach route a prerenderáil de réir réamhshocraithe:
 
@@ -180,7 +180,7 @@ src/styles.scss
 
 ---
 
-# Deilbhíní
+# Icons
 
 Áiríonn an teimpléad seo **Material Symbols Outlined** agus ba chóir iad a úsáid mar an tacar
 deilbhíní réamhshocraithe ar fud an tionscadail.
@@ -208,7 +208,7 @@ Le haghaidh cnaipí inrochtana, coinnigh an deilbhín maisiúil agus cuir lipéa
 
 ---
 
-# Aistriúcháin agus teangacha
+# Translations And Languages
 
 Tá aistriúcháin UI lonnaithe faoi láthair i:
 
@@ -235,7 +235,7 @@ Agus aistriúcháin á gcur leis nó á nuashonrú:
 
 ---
 
-# Coinbhinsiúin SCSS
+# SCSS Conventions
 
 Úsáid SCSS ar bhealach a mheaitseálann réamhshocruithe nua-aimseartha Angular:
 
@@ -284,7 +284,7 @@ Coinnigh comhaid environment teoranta do chumraíocht phoiblí an front-end. Ná
 
 ---
 
-# Imscaradh
+# Deployment
 
 Déantar an t-imscaradh go huathoibríoch le **GitHub Actions**.
 
@@ -309,7 +309,7 @@ dist/app/browser
 
 ---
 
-# Fearann
+# Domain
 
 Fearann saincheaptha ba chóir duit a choigeartú do d'fhearann féin ionas go n-oibreoidh sé i gceart;
 tá aon fho-fhearann de `*.itkamianets.com` bailí mura bhfuil sé in úsáid cheana inár n-eagraíocht GitHub.
@@ -326,7 +326,7 @@ CNAME
 
 ---
 
-# Stíl chóid
+# Code Style
 
 Déantar formáidiú a láimhseáil le:
 
@@ -341,7 +341,7 @@ Príomhchoinbhinsiúin:
 
 ---
 
-# Úsáid AI
+# AI Usage
 
 Má úsáideann tú AI taobh amuigh den IDE agus mura léann sé treoracha an stórais go huathoibríoch,
 cóipeáil ábhar `AGENTS.md` isteach sa phrompt/comhthéacs ar dtús.
@@ -350,7 +350,7 @@ Cinntíonn sé sin go leanann an AI na rialacha tionscadail céanna a úsáidean
 
 ---
 
-# Scripteanna NPM
+# NPM Scripts
 
 Tosaigh forbairt:
 
@@ -372,7 +372,7 @@ npm run serve:ssr:app
 
 ---
 
-# Riachtanais
+# Requirements
 
 Timpeallacht mholta:
 
@@ -383,7 +383,7 @@ npm 11+
 
 ---
 
-# Treoir struchtúir an chóid
+# Code structure guide
 
 ## Pages
 
@@ -435,7 +435,7 @@ export const routes: Routes = [
 
 ---
 
-## Struchtúr feature do mhodúil atá ceangailte leis an back-end
+## Feature structure for back-end connected modules
 
 Má theastaíonn a loighic ghnó féin agus comhtháthú back-end ó chuid den aip, cruthaigh
 fillteán feature tiomnaithe laistigh de:
@@ -509,7 +509,7 @@ agus `language.service.ts` bailí freisin má choinníonn an struchtúr sin an f
 
 ---
 
-## Cód comhroinnte ginearálta
+## Generic shared code
 
 Is féidir cód ginearálta in-athúsáidte nach mbaineann le feature ar leith a chur go díreach faoi `src/app`.
 
@@ -564,7 +564,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Achoimre forbartha
+## Development summary
 
 Úsáid na suíomhanna seo de réir réamhshocraithe:
 
@@ -572,7 +572,7 @@ src/app/interfaces/select-option.interface.ts
 - `src/app/feature/<name>` - cód feature-shonrach le loighic ghnó/back-end
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - cód ginearálta comhroinnte
 
-# Cruthaigh tionscadal nua ón teimpléad seo
+# Create a new project from this template
 
 Clónaigh an stór réamhshocraithe isteach i bhfillteán nua le hainm do thionscadail
 (cuir ainm do thionscadail in ionad `PROJECT_NAME`):
@@ -584,7 +584,7 @@ npm i
 npm run start
 ```
 
-### Cad a dhéanann na horduithe seo
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Íoslódálann sé stór an teimpléid agus cruthaíonn sé fillteán áitiúil darb ainm `PROJECT_NAME`.
@@ -597,7 +597,7 @@ npm run start
 
 Ina dhiaidh sin, oscail an URL áitiúil a thaispeántar sa teirminéal, de ghnáth [http://localhost:4200](http://localhost:4200)
 
-## Tionscnaigh do stór git féin
+## Initialize your own git repository
 
 Más mian leat tosú as an nua seachas stair git an teimpléid a choinneáil, bain an fillteán `.git`,
 tionscnaigh stór nua, agus cruthaigh an chéad commit.
@@ -621,6 +621,6 @@ Ceanglaíonn `git remote add origin ...` do stór áitiúil leis an stór iargú
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Ceadúnas
+# License
 
 MIT

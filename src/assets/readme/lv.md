@@ -1,4 +1,4 @@
-# Angular nolaišanās lapas veidne (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Moderna Angular 21 sākuma veidne ātru nolaišanās lapu izveidei ar **SSR prerenderēšanu**, **TailwindCSS** un **izvietošanu GitHub Pages**.
 
@@ -6,7 +6,7 @@ Moderna Angular 21 sākuma veidne ātru nolaišanās lapu izveidei ar **SSR prer
 
 ---
 
-# Pārskats
+# Acknowledge
 
 - Angular **21**
 - **SSR prerenderēšana** būvēšanas laikā
@@ -31,7 +31,7 @@ Taču izvietošanai tiek izmantota **pārlūkā prerenderētā izvade**, tāpēc
 
 ---
 
-# Projekta Struktūra
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Izstrāde
+# Development
 
 Palaidiet izstrādes serveri:
 
@@ -78,7 +78,7 @@ Izstrādes režīms darbojas kā parasta Angular SPA.
 
 ---
 
-# Būvēšana
+# Build
 
 Uzbūvējiet projektu:
 
@@ -97,7 +97,7 @@ Lapas tiek **prerenderētas būvēšanas laikā**, izmantojot Angular SSR.
 
 ---
 
-# SSR servera palaišana (neobligāti)
+# Running the SSR server (optional)
 
 Veidnē ir iekļauts Node serveris SSR darbībai:
 
@@ -115,7 +115,7 @@ Lielākajai daļai nolaišanās lapu tas **nav nepieciešams**, jo prerenderēta
 
 ---
 
-# Prerender konfigurācija
+# Prerender configuration
 
 Pēc noklusējuma tiek prerenderēti visi maršruti:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Ikonas
+# Icons
 
 Šajā veidnē ir iekļautas **Material Symbols Outlined**, un tās jāizmanto kā noklusējuma ikonu komplekts visā projektā.
 
@@ -201,7 +201,7 @@ Pieejamām pogām saglabājiet ikonu dekoratīvu un pašai pogai nodrošiniet te
 
 ---
 
-# Tulkojumi un Valodas
+# Translations And Languages
 
 UI tulkojumi pašlaik atrodas:
 
@@ -227,7 +227,7 @@ Pievienojot vai atjauninot tulkojumus:
 
 ---
 
-# SCSS konvencijas
+# SCSS Conventions
 
 Izmantojiet SCSS tā, lai tas atbilstu mūsdienu Angular noklusējuma principiem:
 
@@ -273,7 +273,7 @@ Saglabājiet environment failos tikai publisku front-end konfigurāciju. Neglab�
 
 ---
 
-# Izvietošana
+# Deployment
 
 Izvietošana tiek apstrādāta automātiski caur **GitHub Actions**.
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Domēns
+# Domain
 
 Pielāgotais domēns, kuru jums vajadzētu nomainīt uz savu domēnu, lai tas darbotos pareizi, jebkurš `*.itkamianets.com` apakšdomēns, ja tas iepriekš nav izmantots mūsu GitHub organizācijā.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Koda Stils
+# Code Style
 
 Formatēšanu apstrādā:
 
@@ -329,7 +329,7 @@ Galvenās konvencijas:
 
 ---
 
-# AI lietošana
+# AI Usage
 
 Ja izmantojat AI ārpus IDE un tas automātiski neizlasa repozitorija instrukcijas, vispirms iekopējiet `AGENTS.md` saturu AI uzvednē / kontekstā.
 
@@ -337,7 +337,7 @@ Tas nodrošina, ka AI ievēro tās pašas projektam specifiskās vadlīnijas, ku
 
 ---
 
-# NPM skripti
+# NPM Scripts
 
 Palaist izstrādi:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Prasības
+# Requirements
 
 Ieteicamā vide:
 
@@ -370,9 +370,9 @@ npm 11+
 
 ---
 
-# Koda struktūras ceļvedis
+# Code structure guide
 
-## Lapas
+## Pages
 
 Lietotnes lapas jāveido šeit:
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Feature struktūra moduļiem ar back-end integrāciju
+## Feature structure for back-end connected modules
 
 Ja kādai lietotnes daļai nepieciešama sava biznesa loģika un back-end integrācija, izveidojiet tai atsevišķu feature mapi šeit:
 
@@ -493,7 +493,7 @@ Mazām fokusētām feature der arī līdzās izvietoti faili, piemēram, `featur
 
 ---
 
-## Koplietojamais vispārīgais kods
+## Generic shared code
 
 Vispārīgs atkārtoti lietojams kods, kas nav piesaistīts vienai konkrētai feature, var atrasties tieši zem `src/app`.
 
@@ -548,7 +548,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Izstrādes kopsavilkums
+## Development summary
 
 Pēc noklusējuma izmantojiet šīs atrašanās vietas:
 
@@ -556,7 +556,7 @@ Pēc noklusējuma izmantojiet šīs atrašanās vietas:
 - `src/app/feature/<name>` - feature specifisks kods ar biznesa loģiku / back-end
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - koplietojamais vispārīgais kods
 
-# Izveidojiet jaunu projektu no šīs veidnes
+# Create a new project from this template
 
 Klonējiet noklusēto repozitoriju jaunā mapē ar sava projekta nosaukumu (aizstājiet `PROJECT_NAME` ar sava projekta nosaukumu):
 
@@ -567,7 +567,7 @@ npm i
 npm run start
 ```
 
-### Ko dara šīs komandas
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Lejupielādē veidnes repozitoriju un izveido lokālu mapi ar nosaukumu `PROJECT_NAME`.
@@ -580,7 +580,7 @@ npm run start
 
 Pēc tam atveriet terminālī parādīto lokālo URL, parasti [http://localhost:4200](http://localhost:4200)
 
-## Inicializējiet savu git repozitoriju
+## Initialize your own git repository
 
 Ja vēlaties sākt no nulles, nevis saglabāt veidnes git vēsturi, noņemiet esošo `.git` mapi, inicializējiet jaunu repozitoriju un izveidojiet pirmo commit.
 
@@ -602,6 +602,6 @@ Pirmajam commit arī izmantojiet Conventional Commit ziņojumu. Labs noklusējum
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licence
+# License
 
 MIT

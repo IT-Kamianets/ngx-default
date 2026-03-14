@@ -1,4 +1,4 @@
-# Mudell Angular Landing (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Mudell modern Angular 21 biex tibni landing pages veloċi b'**SSR prerendering**, **TailwindCSS**, u **deploy fuq GitHub Pages**.
 
@@ -6,7 +6,7 @@ Dan il-mudell huwa ottimizzat għal landing pages statiċi fejn il-paġni jiġu 
 
 ---
 
-# Punti prinċipali
+# Acknowledge
 
 - Angular **21**
 - **SSR prerendering** waqt il-build
@@ -31,7 +31,7 @@ Iżda d-deploy juża l-**browser prerendered output**, u għalhekk huwa ideali g
 
 ---
 
-# Struttura tal-proġett
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Żvilupp
+# Development
 
 Ibda s-server tal-iżvilupp:
 
@@ -97,7 +97,7 @@ Il-paġni jiġu **prerendered fil-build time** bl-Angular SSR.
 
 ---
 
-# Tħaddim tas-server SSR (mhux obbligatorju)
+# Running the SSR server (optional)
 
 Il-mudell jinkludi Node server għal SSR:
 
@@ -115,7 +115,7 @@ Għall-biċċa l-kbira tal-landing pages dan **mhux meħtieġ**, għax HTML prer
 
 ---
 
-# Konfigurazzjoni tal-prerender
+# Prerender configuration
 
 Ir-routes kollha jiġu prerendered b'mod awtomatiku:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Ikoni
+# Icons
 
 Dan il-mudell jinkludi **Material Symbols Outlined** u dawn għandhom jintużaw bħala s-sett default tal-ikoni fil-proġett kollu.
 
@@ -201,7 +201,7 @@ Għal buttons aċċessibbli, ħalli l-ikona dekorattiva u ipprovdi text label je
 
 ---
 
-# Traduzzjonijiet u lingwi
+# Translations And Languages
 
 It-traduzzjonijiet tal-UI bħalissa jinsabu f':
 
@@ -227,7 +227,7 @@ Meta żżid jew taġġorna t-traduzzjonijiet:
 
 ---
 
-# Konvenzjonijiet SCSS
+# SCSS Conventions
 
 Uża SCSS b'mod li jaqbel mal-defaults moderni ta' Angular:
 
@@ -273,7 +273,7 @@ Production builds jissostitwixxu `environment.ts` b'`environment.prod.ts` permez
 
 ---
 
-# Deploy
+# Deployment
 
 Id-deploy jiġi mmaniġġjat awtomatikament permezz ta' **GitHub Actions**.
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Dominju
+# Domain
 
 Custom domain li għandek taġġusta għad-dominju tiegħek biex jaħdem sew, kwalunkwe subdomain ta' `*.itkamianets.com` jekk ma tkunx diġà intużat qabel fl-organizzazzjoni GitHub tagħna.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Stil tal-kodiċi
+# Code Style
 
 Il-formatting jiġi mmaniġġjat minn:
 
@@ -329,7 +329,7 @@ Konvenzjonijiet ewlenin:
 
 ---
 
-# Użu tal-AI
+# AI Usage
 
 Jekk tuża AI barra mill-IDE u ma taqrax awtomatikament l-istruzzjonijiet tar-repożitorju, ikkopja l-kontenut ta' `AGENTS.md` fil-prompt jew fil-kuntest tal-AI l-ewwel.
 
@@ -337,7 +337,7 @@ Dan jiżgura li l-AI ssegwi l-istess regoli speċifiċi għall-proġett li juża
 
 ---
 
-# NPM scripts
+# NPM Scripts
 
 Ibda l-iżvilupp:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Rekwiżiti
+# Requirements
 
 Ambjent rakkomandat:
 
@@ -370,7 +370,7 @@ npm 11+
 
 ---
 
-# Gwida għall-istruttura tal-kodiċi
+# Code structure guide
 
 ## Pages
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Struttura feature għal moduli konnessi mal-back-end
+## Feature structure for back-end connected modules
 
 Jekk parti mill-app teħtieġ il-business logic tagħha u integrazzjoni mal-back-end, oħloq folder dedikat ġewwa:
 
@@ -494,7 +494,7 @@ Għal features żgħar u ffukati, fajls colocated bħal `feature/language/langua
 
 ---
 
-## Kodiċi ġeneriku kondiviż
+## Generic shared code
 
 Kodiċi riutilizzabbli ġeneriku li mhuwiex marbut ma' feature waħda speċifika jista' jgħix direttament taħt `src/app`.
 
@@ -549,7 +549,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Sommarju għall-iżvilupp
+## Development summary
 
 Uża dawn il-postijiet b'mod default:
 
@@ -557,7 +557,7 @@ Uża dawn il-postijiet b'mod default:
 - `src/app/feature/<name>` - kodiċi speċifiku għall-feature b'backend/business logic
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - kodiċi ġeneriku kondiviż
 
-# Oħloq proġett ġdid minn dan il-mudell
+# Create a new project from this template
 
 Ikkklona r-repożitorju default ġo folder ġdid bl-isem tal-proġett tiegħek (ibdel `PROJECT_NAME` bl-isem tal-proġett tiegħek):
 
@@ -568,7 +568,7 @@ npm i
 npm run start
 ```
 
-### X'jagħmlu dawn il-kmandi
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Iniżżel ir-repożitorju tal-mudell u joħloq folder lokali bl-isem `PROJECT_NAME`.
@@ -581,7 +581,7 @@ npm run start
 
 Wara dan, iftaħ il-URL lokali muri fit-terminal, ġeneralment [http://localhost:4200](http://localhost:4200)
 
-## Inizjalizza r-repożitorju git tiegħek
+## Initialize your own git repository
 
 Jekk trid tibda mill-ġdid minflok iżżomm il-git history tal-mudell, neħħi l-folder `.git` eżistenti, inizjalizza repożitorju ġdid, u oħloq l-ewwel commit.
 
@@ -603,6 +603,6 @@ Uża Conventional Commit message ukoll għall-ewwel commit. Default tajjeb huwa:
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Liċenzja
+# License
 
 MIT

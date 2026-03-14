@@ -1,4 +1,4 @@
-# Angular predložak za landing stranice (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Moderan početni Angular 21 predložak za izradu brzih landing stranica s **SSR prerenderingom**, **TailwindCSS-om** i **deployom na GitHub Pages**.
 
@@ -6,7 +6,7 @@ Ovaj je predložak optimiziran za statične landing stranice, gdje se stranice r
 
 ---
 
-# Osnovne smjernice
+# Acknowledge
 
 - Angular **21**
 - **SSR prerendering** tijekom builda
@@ -31,7 +31,7 @@ Ali za deployment koristi se **browser prerendered output**, što ga čini ideal
 
 ---
 
-# Struktura projekta
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Razvoj
+# Development
 
 Pokrenite development server:
 
@@ -97,7 +97,7 @@ Stranice se **prerendered at build time** pomoću Angular SSR-a.
 
 ---
 
-# Pokretanje SSR servera (opcionalno)
+# Running the SSR server (optional)
 
 Predložak sadrži Node server za SSR:
 
@@ -115,7 +115,7 @@ Za većinu landing stranica to **nije potrebno**, jer je prerendered HTML već g
 
 ---
 
-# Konfiguracija prerendera
+# Prerender configuration
 
 Sve routes su prerenderirane prema zadanim postavkama:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Ikone
+# Icons
 
 Ovaj predložak uključuje **Material Symbols Outlined** i njih treba koristiti kao standardni set ikona u cijelom projektu.
 
@@ -201,7 +201,7 @@ Za pristupačne gumbe ostavite ikonu dekorativnom i dodajte tekstualnu oznaku il
 
 ---
 
-# Prijevodi i jezici
+# Translations And Languages
 
 UI prijevodi trenutno se nalaze u:
 
@@ -227,7 +227,7 @@ Kada dodajete ili ažurirate translations:
 
 ---
 
-# SCSS konvencije
+# SCSS Conventions
 
 Koristite SCSS na način koji slijedi moderne Angular defaults:
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Domena
+# Domain
 
 Prilagođena domena koju trebate zamijeniti svojom kako bi sve radilo ispravno; može biti bilo koja poddomena `*.itkamianets.com` ako se još ne koristi u našoj GitHub organizaciji.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Stil koda
+# Code Style
 
 Formatiranje se provodi putem:
 
@@ -329,7 +329,7 @@ Ključna pravila:
 
 ---
 
-# Korištenje AI-ja
+# AI Usage
 
 Ako koristite AI izvan IDE-a i on ne čita automatski upute repozitorija, najprije kopirajte sadržaj `AGENTS.md` u prompt/context AI-ja.
 
@@ -337,7 +337,7 @@ Time se osigurava da će AI slijediti ista projektna pravila kojih se Codex prid
 
 ---
 
-# NPM skripte
+# NPM Scripts
 
 Pokretanje developmenta:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Zahtjevi
+# Requirements
 
 Preporučeno okruženje:
 
@@ -370,7 +370,7 @@ npm 11+
 
 ---
 
-# Vodič za strukturu koda
+# Code structure guide
 
 ## Pages
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Feature struktura za module povezane s back-endom
+## Feature structure for back-end connected modules
 
 Ako neki dio app-a zahtijeva vlastitu business logic i integraciju s back-endom, stvorite zasebnu feature mapu u:
 
@@ -493,7 +493,7 @@ Za male fokusirane features dopuštene su i colocated datoteke poput `feature/la
 
 ---
 
-## Dijeljeni generički kod
+## Generic shared code
 
 Opći reusable kod koji nije vezan uz jednu određenu feature može se smjestiti izravno u `src/app`.
 
@@ -548,7 +548,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Sažetak razvoja
+## Development summary
 
 Koristite ove lokacije kao zadane:
 
@@ -556,7 +556,7 @@ Koristite ove lokacije kao zadane:
 - `src/app/feature/<name>` - feature-specific code with back-end/business logic
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - generic shared code
 
-# Napravite novi projekt iz ovog predloška
+# Create a new project from this template
 
 Klonirajte default repository u novu mapu s nazivom vašeg projekta (zamijenite `PROJECT_NAME` nazivom svojeg projekta):
 
@@ -567,7 +567,7 @@ npm i
 npm run start
 ```
 
-### Što rade ove naredbe
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Preuzima template repository i stvara lokalnu mapu s nazivom `PROJECT_NAME`.
@@ -580,7 +580,7 @@ npm run start
 
 Nakon toga otvorite lokalni URL prikazan u terminalu, obično [http://localhost:4200](http://localhost:4200)
 
-## Inicijalizirajte vlastiti git repository
+## Initialize your own git repository
 
 Ako želite krenuti od nule umjesto zadržati git history predloška, izbrišite postojeću `.git` mapu, inicijalizirajte novi repository i napravite prvi commit.
 
@@ -602,6 +602,6 @@ Za prvi commit također koristite Conventional Commit poruku. Dobar standardni p
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licenca
+# License
 
 MIT

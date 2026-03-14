@@ -1,4 +1,4 @@
-# Șablon Angular pentru Landing Page (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Șablon modern de pornire Angular 21 pentru construirea de pagini de prezentare rapide, cu
 **prerandare SSR**, **TailwindCSS** și **deploy pe GitHub Pages**.
@@ -8,7 +8,7 @@ randate la **momentul build-ului** pentru SEO și performanță.
 
 ---
 
-# Lucruri de reținut
+# Acknowledge
 
 - Angular **21**
 - **Prerandare SSR** în timpul build-ului
@@ -35,7 +35,7 @@ static.
 
 ---
 
-# Structura proiectului
+# Project Structure
 
 ```
 src/
@@ -62,7 +62,7 @@ app.routes.server.ts
 
 ---
 
-# Dezvoltare
+# Development
 
 Pornește serverul de dezvoltare:
 
@@ -101,7 +101,7 @@ Paginile sunt **prerandate la momentul build-ului** folosind Angular SSR.
 
 ---
 
-# Rularea serverului SSR (opțional)
+# Running the SSR server (optional)
 
 Șablonul include un server Node pentru SSR:
 
@@ -120,7 +120,7 @@ prerandat este deja generat.
 
 ---
 
-# Configurația de prerandare
+# Prerender configuration
 
 Toate rutele sunt prerandate implicit:
 
@@ -180,7 +180,7 @@ src/styles.scss
 
 ---
 
-# Iconițe
+# Icons
 
 Acest șablon include **Material Symbols Outlined**, iar acestea ar trebui folosite ca setul
 implicit de iconițe în întregul proiect.
@@ -208,7 +208,7 @@ Pentru butoane accesibile, păstrează iconița decorativă și oferă o etichet
 
 ---
 
-# Traduceri și limbi
+# Translations And Languages
 
 Traducerile UI se află în prezent în:
 
@@ -236,7 +236,7 @@ Când adaugi sau actualizezi traduceri:
 
 ---
 
-# Convenții SCSS
+# SCSS Conventions
 
 Folosește SCSS într-un mod care se potrivește cu valorile implicite moderne din Angular:
 
@@ -287,7 +287,7 @@ ele.
 
 ---
 
-# Deploy
+# Deployment
 
 Deploy-ul este gestionat automat prin **GitHub Actions**.
 
@@ -312,7 +312,7 @@ dist/app/browser
 
 ---
 
-# Domeniu
+# Domain
 
 Domeniu personalizat pe care ar trebui să îl adaptezi la propriul domeniu pentru a funcționa
 corect, orice subdomeniu al `*.itkamianets.com` dacă nu este deja folosit în organizația noastră
@@ -330,7 +330,7 @@ CNAME
 
 ---
 
-# Stil de cod
+# Code Style
 
 Formatarea este gestionată de:
 
@@ -345,7 +345,7 @@ Convenții cheie:
 
 ---
 
-# Utilizarea AI
+# AI Usage
 
 Dacă folosești AI în afara IDE-ului și acesta nu citește automat instrucțiunile repository-ului,
 copiază mai întâi conținutul din `AGENTS.md` în promptul/contextul AI.
@@ -355,7 +355,7 @@ folosește în IDE.
 
 ---
 
-# Scripturi NPM
+# NPM Scripts
 
 Pornește dezvoltarea:
 
@@ -377,7 +377,7 @@ npm run serve:ssr:app
 
 ---
 
-# Cerințe
+# Requirements
 
 Mediu recomandat:
 
@@ -388,9 +388,9 @@ npm 11+
 
 ---
 
-# Ghid pentru structura codului
+# Code structure guide
 
-## Pagini
+## Pages
 
 Paginile aplicației ar trebui create în:
 
@@ -440,7 +440,7 @@ export const routes: Routes = [
 
 ---
 
-## Structură feature pentru module conectate la back-end
+## Feature structure for back-end connected modules
 
 Dacă o parte a aplicației are nevoie de propria logică de business și integrare cu back-end-ul,
 creează un folder feature dedicat în:
@@ -514,7 +514,7 @@ atunci când acea structură păstrează feature-ul mai simplu.
 
 ---
 
-## Cod generic partajat
+## Generic shared code
 
 Codul generic reutilizabil care nu este legat de un singur feature specific poate sta direct sub
 `src/app`.
@@ -570,7 +570,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Rezumat pentru dezvoltare
+## Development summary
 
 Folosește implicit aceste locații:
 
@@ -578,7 +578,7 @@ Folosește implicit aceste locații:
 - `src/app/feature/<name>` - cod specific feature-ului cu logică de business/back-end
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - cod generic partajat
 
-# Creează un proiect nou din acest șablon
+# Create a new project from this template
 
 Clonează repository-ul de bază într-un folder nou cu numele proiectului tău (înlocuiește
 `PROJECT_NAME` cu numele proiectului):
@@ -590,7 +590,7 @@ npm i
 npm run start
 ```
 
-### Ce fac aceste comenzi
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Descarcă repository-ul șablon și creează un folder local numit `PROJECT_NAME`.
@@ -604,7 +604,7 @@ npm run start
 După aceea, deschide URL-ul local afișat în terminal, de obicei
 [http://localhost:4200](http://localhost:4200)
 
-## Inițializează propriul tău repository git
+## Initialize your own git repository
 
 Dacă vrei să începi de la zero în loc să păstrezi istoricul git al șablonului, elimină folderul
 `.git` existent, inițializează un repository nou și creează primul commit.
@@ -628,6 +628,6 @@ Folosește și pentru primul commit un mesaj Conventional Commit. O variantă bu
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licență
+# License
 
 MIT

@@ -1,4 +1,4 @@
-# Angular nukreipimo puslapio šablonas (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Modernus Angular 21 pradinis šablonas greitiems nukreipimo puslapiams kurti su **SSR prerenderinimu**, **TailwindCSS** ir **GitHub Pages diegimu**.
 
@@ -6,7 +6,7 @@ Modernus Angular 21 pradinis šablonas greitiems nukreipimo puslapiams kurti su 
 
 ---
 
-# Apžvalga
+# Acknowledge
 
 - Angular **21**
 - **SSR prerenderinimas** kompiliavimo metu
@@ -31,7 +31,7 @@ Tačiau diegimui naudojama **naršyklės prerenderinta išvestis**, todėl tai p
 
 ---
 
-# Projekto Struktūra
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Vystymas
+# Development
 
 Paleiskite vystymo serverį:
 
@@ -78,7 +78,7 @@ Vystymo režimas veikia kaip įprasta Angular SPA.
 
 ---
 
-# Kompiliavimas
+# Build
 
 Sukompiliuokite projektą:
 
@@ -97,7 +97,7 @@ Puslapiai yra **prerenderinami kompiliavimo metu** naudojant Angular SSR.
 
 ---
 
-# SSR serverio paleidimas (nebūtina)
+# Running the SSR server (optional)
 
 Šablonas apima Node serverį SSR veikimui:
 
@@ -115,7 +115,7 @@ Daugumai nukreipimo puslapių to **nereikia**, nes prerenderintas HTML jau sugen
 
 ---
 
-# Prerender konfigūracija
+# Prerender configuration
 
 Pagal nutylėjimą prerenderinami visi maršrutai:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Piktogramos
+# Icons
 
 Šiame šablone yra **Material Symbols Outlined**, ir jos turėtų būti naudojamos kaip numatytasis piktogramų rinkinys visame projekte.
 
@@ -201,7 +201,7 @@ Prieinamiems mygtukams piktogramą palikite dekoratyvinę, o pačiam mygtukui su
 
 ---
 
-# Vertimai ir Kalbos
+# Translations And Languages
 
 UI vertimai šiuo metu yra:
 
@@ -227,7 +227,7 @@ Kai pridedate arba atnaujinate vertimus:
 
 ---
 
-# SCSS konvencijos
+# SCSS Conventions
 
 Naudokite SCSS taip, kad tai atitiktų modernius Angular numatytuosius principus:
 
@@ -273,7 +273,7 @@ Environment failuose laikykite tik viešą front-end konfigūraciją. Nelaikykit
 
 ---
 
-# Diegimas
+# Deployment
 
 Diegimas vykdomas automatiškai per **GitHub Actions**.
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Domenas
+# Domain
 
 Pasirinktinis domenas, kurį turėtumėte pakeisti savo domenu, kad viskas veiktų tinkamai, bet kuriam `*.itkamianets.com` subdomenui, jei jis dar nebuvo naudotas mūsų GitHub organizacijoje.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Kodo Stilius
+# Code Style
 
 Formatavimą tvarko:
 
@@ -329,7 +329,7 @@ Pagrindinės konvencijos:
 
 ---
 
-# AI naudojimas
+# AI Usage
 
 Jei naudojate AI už IDE ribų ir jis automatiškai neperskaito repozitorijos instrukcijų, pirmiausia nukopijuokite `AGENTS.md` turinį į AI užklausą / kontekstą.
 
@@ -337,7 +337,7 @@ Taip užtikrinsite, kad AI laikysis tų pačių projektui skirtų taisyklių, ku
 
 ---
 
-# NPM skriptai
+# NPM Scripts
 
 Paleisti vystymą:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Reikalavimai
+# Requirements
 
 Rekomenduojama aplinka:
 
@@ -370,9 +370,9 @@ npm 11+
 
 ---
 
-# Kodo struktūros gidas
+# Code structure guide
 
-## Puslapiai
+## Pages
 
 Programos puslapiai turi būti kuriami čia:
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Feature struktūra moduliams su back-end integracija
+## Feature structure for back-end connected modules
 
 Jei kuriai nors programos daliai reikia atskiros verslo logikos ir back-end integracijos, sukurkite atskirą feature aplanką čia:
 
@@ -493,7 +493,7 @@ Mažoms koncentruotoms feature taip pat tinka vienoje vietoje laikomi failai, to
 
 ---
 
-## Bendras dalijamas kodas
+## Generic shared code
 
 Bendras daugkartinio naudojimo kodas, kuris nėra susietas su viena konkrečia feature, gali būti laikomas tiesiogiai `src/app`.
 
@@ -548,7 +548,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Vystymo santrauka
+## Development summary
 
 Pagal nutylėjimą naudokite šias vietas:
 
@@ -556,7 +556,7 @@ Pagal nutylėjimą naudokite šias vietas:
 - `src/app/feature/<name>` - feature specifinis kodas su verslo logika / back-end
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - bendras dalijamas kodas
 
-# Sukurkite naują projektą iš šio šablono
+# Create a new project from this template
 
 Nukopijuokite numatytąjį repozitorijos šabloną į naują aplanką su savo projekto pavadinimu (pakeiskite `PROJECT_NAME` savo projekto pavadinimu):
 
@@ -567,7 +567,7 @@ npm i
 npm run start
 ```
 
-### Ką daro šios komandos
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Atsiunčia šablono repozitoriją ir sukuria vietinį aplanką pavadinimu `PROJECT_NAME`.
@@ -580,7 +580,7 @@ npm run start
 
 Po to atidarykite vietinį URL, parodytą terminale, dažniausiai [http://localhost:4200](http://localhost:4200)
 
-## Inicializuokite savo git repozitoriją
+## Initialize your own git repository
 
 Jei norite pradėti nuo nulio vietoje šablono git istorijos išlaikymo, pašalinkite esamą `.git` aplanką, inicializuokite naują repozitoriją ir sukurkite pirmą commit.
 
@@ -602,6 +602,6 @@ Pirmajam commit taip pat naudokite Conventional Commit žinutę. Tinkamas numaty
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licencija
+# License
 
 MIT

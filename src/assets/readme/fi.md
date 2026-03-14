@@ -1,4 +1,4 @@
-# Angular Landing Template (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Moderni Angular 21 -aloituspohja nopeiden landing page -sivujen rakentamiseen käyttäen **SSR prerendering**, **TailwindCSS** ja **GitHub Pages deployment**.
 

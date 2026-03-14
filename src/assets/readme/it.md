@@ -1,4 +1,4 @@
-# Template Angular per Landing Page (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Template starter moderno per Angular 21 per creare landing page veloci con
 **SSR prerendering**, **TailwindCSS** e **deploy su GitHub Pages**.
@@ -8,7 +8,7 @@ renderizzate **in fase di build** per SEO e prestazioni.
 
 ---
 
-# Caratteristiche principali
+# Acknowledge
 
 - Angular **21**
 - **SSR prerendering** durante la build
@@ -34,7 +34,7 @@ Ma il deploy usa l'**output browser prerenderizzato**, rendendolo perfetto per h
 
 ---
 
-# Struttura del progetto
+# Project Structure
 
 ```
 src/
@@ -61,7 +61,7 @@ app.routes.server.ts
 
 ---
 
-# Sviluppo
+# Development
 
 Avvia il server di sviluppo:
 
@@ -100,7 +100,7 @@ Le pagine vengono **prerenderizzate in fase di build** usando Angular SSR.
 
 ---
 
-# Eseguire il server SSR (opzionale)
+# Running the SSR server (optional)
 
 Il template include un server Node per SSR:
 
@@ -119,7 +119,7 @@ prerenderizzato viene gia generato durante la build.
 
 ---
 
-# Configurazione del prerender
+# Prerender configuration
 
 Tutte le route vengono prerenderizzate di default:
 
@@ -179,7 +179,7 @@ src/styles.scss
 
 ---
 
-# Icone
+# Icons
 
 Questo template include **Material Symbols Outlined** e dovrebbero essere usate come
 set di icone predefinito in tutto il progetto.
@@ -207,7 +207,7 @@ o un `aria-label` sul pulsante stesso:
 
 ---
 
-# Traduzioni e lingue
+# Translations And Languages
 
 Le traduzioni UI attualmente si trovano in:
 
@@ -234,7 +234,7 @@ Quando aggiungi o aggiorni le traduzioni:
 
 ---
 
-# Convenzioni SCSS
+# SCSS Conventions
 
 Usa SCSS in modo coerente con i default moderni di Angular:
 
@@ -285,7 +285,7 @@ Non archiviare segreti al loro interno.
 
 ---
 
-# Deploy
+# Deployment
 
 Il deploy viene gestito automaticamente tramite **GitHub Actions**.
 
@@ -310,7 +310,7 @@ dist/app/browser
 
 ---
 
-# Dominio
+# Domain
 
 Dominio personalizzato che dovresti adattare al tuo dominio in modo che funzioni correttamente;
 qualsiasi sottodominio di `*.itkamianets.com` va bene se non e gia usato nella nostra organizzazione GitHub.
@@ -327,7 +327,7 @@ CNAME
 
 ---
 
-# Stile del codice
+# Code Style
 
 La formattazione e gestita da:
 
@@ -342,7 +342,7 @@ Convenzioni principali:
 
 ---
 
-# Uso dell'AI
+# AI Usage
 
 Se usi AI fuori dall'IDE e non legge automaticamente le istruzioni del repository,
 copia prima il contenuto di `AGENTS.md` nel prompt/contesto dell'AI.
@@ -351,7 +351,7 @@ Questo assicura che l'AI segua le stesse regole specifiche del progetto che Code
 
 ---
 
-# Script NPM
+# NPM Scripts
 
 Avvia lo sviluppo:
 
@@ -373,7 +373,7 @@ npm run serve:ssr:app
 
 ---
 
-# Requisiti
+# Requirements
 
 Ambiente consigliato:
 
@@ -384,9 +384,9 @@ npm 11+
 
 ---
 
-# Guida alla struttura del codice
+# Code structure guide
 
-## Pagine
+## Pages
 
 Le pagine dell'applicazione dovrebbero essere create dentro:
 
@@ -436,7 +436,7 @@ export const routes: Routes = [
 
 ---
 
-## Struttura feature per moduli collegati al back-end
+## Feature structure for back-end connected modules
 
 Se una parte dell'app ha bisogno della propria business logic e integrazione back-end,
 crea una cartella feature dedicata dentro:
@@ -510,7 +510,7 @@ e `language.service.ts` quando questa struttura mantiene la feature piu semplice
 
 ---
 
-## Codice condiviso generico
+## Generic shared code
 
 Il codice riutilizzabile generico che non appartiene a una feature specifica puo stare direttamente sotto `src/app`.
 
@@ -565,7 +565,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Riepilogo sviluppo
+## Development summary
 
 Usa queste posizioni come default:
 
@@ -573,7 +573,7 @@ Usa queste posizioni come default:
 - `src/app/feature/<name>` - codice specifico della feature con business logic/back-end
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - codice condiviso generico
 
-# Crea un nuovo progetto da questo template
+# Create a new project from this template
 
 Clona il repository base in una nuova cartella con il nome del tuo progetto
 (sostituisci `PROJECT_NAME` con il nome del tuo progetto):
@@ -585,7 +585,7 @@ npm i
 npm run start
 ```
 
-### Cosa fanno questi comandi
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Scarica il repository template e crea una cartella locale chiamata `PROJECT_NAME`.
@@ -598,7 +598,7 @@ npm run start
 
 Dopo, apri l'URL locale mostrato nel terminale, di solito [http://localhost:4200](http://localhost:4200)
 
-## Inizializza il tuo repository git
+## Initialize your own git repository
 
 Se vuoi partire da zero invece di mantenere la history git del template, rimuovi la cartella `.git`,
 inizializza un nuovo repository e crea il primo commit.
@@ -622,6 +622,6 @@ Usa un messaggio Conventional Commit anche per il primo commit. Un buon default 
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licenza
+# License
 
 MIT

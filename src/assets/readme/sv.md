@@ -1,4 +1,4 @@
-# Angular-landningsmall (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Modern Angular 21-startmall för att bygga snabba landningssidor med **SSR-prerendering**, **TailwindCSS** och **distribution via GitHub Pages**.
 
@@ -6,7 +6,7 @@ Den här mallen är optimerad för statiska landningssidor där sidor renderas v
 
 ---
 
-# Att känna till
+# Acknowledge
 
 - Angular **21**
 - **SSR-prerendering** under byggprocessen
@@ -31,7 +31,7 @@ Men distributionen använder den **prerenderade browser-utdata**, vilket gör de
 
 ---
 
-# Projektstruktur
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Utveckling
+# Development
 
 Starta utvecklingsservern:
 
@@ -78,7 +78,7 @@ Utvecklingsläget körs som en vanlig Angular SPA.
 
 ---
 
-# Bygg
+# Build
 
 Bygg projektet:
 
@@ -97,7 +97,7 @@ Sidorna **prerenderas vid byggtid** med Angular SSR.
 
 ---
 
-# Köra SSR-servern (valfritt)
+# Running the SSR server (optional)
 
 Mallen innehåller en Node-server för SSR:
 
@@ -115,7 +115,7 @@ För de flesta landningssidor är detta **inte nödvändigt**, eftersom prerende
 
 ---
 
-# Prerender-konfiguration
+# Prerender configuration
 
 Alla rutter prerenderas som standard:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Ikoner
+# Icons
 
 Den här mallen innehåller **Material Symbols Outlined** och de ska användas som standarduppsättning för ikoner i projektet.
 
@@ -201,7 +201,7 @@ För tillgängliga knappar ska ikonen vara dekorativ och knappen ska ha en texte
 
 ---
 
-# Översättningar och språk
+# Translations And Languages
 
 UI-översättningar finns för närvarande i:
 
@@ -227,7 +227,7 @@ När översättningar läggs till eller uppdateras:
 
 ---
 
-# SCSS-konventioner
+# SCSS Conventions
 
 Använd SCSS på ett sätt som matchar moderna Angular-standarder:
 
@@ -249,7 +249,7 @@ src/styles/_theme.scss    -> shared theme CSS variables
 
 ---
 
-# Miljöer
+# Environments
 
 Den här mallen innehåller Angular-miljöfiler och de kan användas för olika körningsupplägg, som lokal utveckling och produktionsbyggen.
 
@@ -273,7 +273,7 @@ Håll miljöfiler begränsade till publik front-end-konfiguration. Lagra inga he
 
 ---
 
-# Distribution
+# Deployment
 
 Distribution hanteras automatiskt via **GitHub Actions**.
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Domän
+# Domain
 
 Anpassad domän som du bör ändra till din egen domän så att det fungerar korrekt, valfri subdomän till `*.itkamianets.com` om den inte redan används i vår GitHub-organisation.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Kodstil
+# Code Style
 
 Formatering hanteras av:
 
@@ -329,7 +329,7 @@ Viktiga konventioner:
 
 ---
 
-# AI-användning
+# AI Usage
 
 Om du använder AI utanför IDE:n och den inte automatiskt läser instruktionerna i repot, kopiera först innehållet i `AGENTS.md` till AI-prompten eller kontexten.
 
@@ -337,7 +337,7 @@ Detta säkerställer att AI:n följer samma projektspecifika regler som Codex an
 
 ---
 
-# NPM-skript
+# NPM Scripts
 
 Starta utveckling:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Krav
+# Requirements
 
 Rekommenderad miljö:
 
@@ -370,9 +370,9 @@ npm 11+
 
 ---
 
-# Guide till kodstruktur
+# Code structure guide
 
-## Sidor
+## Pages
 
 Applikationssidor ska skapas i:
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Feature-struktur för moduler kopplade till backend
+## Feature structure for back-end connected modules
 
 Om en del av appen behöver egen affärslogik och backend-integration, skapa en dedikerad feature-mapp i:
 
@@ -493,7 +493,7 @@ För små fokuserade features är samlokaliserade filer som `feature/language/la
 
 ---
 
-## Generisk delad kod
+## Generic shared code
 
 Generisk återanvändbar kod som inte är knuten till en specifik feature kan placeras direkt under `src/app`.
 
@@ -548,7 +548,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Sammanfattning för utveckling
+## Development summary
 
 Använd dessa platser som standard:
 
@@ -556,7 +556,7 @@ Använd dessa platser som standard:
 - `src/app/feature/<name>` - feature-specifik kod med backend-/affärslogik
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - generisk delad kod
 
-# Skapa ett nytt projekt från den här mallen
+# Create a new project from this template
 
 Klona standard-repot till en ny mapp med ditt projektnamn (ersätt `PROJECT_NAME` med ditt projektnamn):
 
@@ -567,7 +567,7 @@ npm i
 npm run start
 ```
 
-### Vad dessa kommandon gör
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Laddar ner mall-repot och skapar en lokal mapp med namnet `PROJECT_NAME`.
@@ -580,7 +580,7 @@ npm run start
 
 Därefter öppnar du den lokala URL som visas i terminalen, vanligtvis [http://localhost:4200](http://localhost:4200)
 
-## Initiera ditt eget git-repository
+## Initialize your own git repository
 
 Om du vill börja från början i stället för att behålla mallens git-historik, ta bort den befintliga `.git`-mappen, initiera ett nytt repository och skapa den första committen.
 
@@ -602,6 +602,6 @@ Använd också ett Conventional Commit-meddelande för den första committen. En
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licens
+# License
 
 MIT

@@ -1,4 +1,4 @@
-# Angular шаблон за landing страници (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Съвременен начален шаблон с Angular 21 за създаване на бързи landing pages с **SSR prerendering**, **TailwindCSS** и **разгръщане в GitHub Pages**.
 
@@ -6,7 +6,7 @@
 
 ---
 
-# Основни принципи
+# Acknowledge
 
 - Angular **21**
 - **SSR prerendering** по време на build
@@ -31,7 +31,7 @@ dist/app/server
 
 ---
 
-# Структура на проекта
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Разработка
+# Development
 
 Стартирайте development сървъра:
 
@@ -97,7 +97,7 @@ dist/app/server
 
 ---
 
-# Стартиране на SSR сървъра (по избор)
+# Running the SSR server (optional)
 
 Шаблонът съдържа Node сървър за SSR:
 
@@ -115,7 +115,7 @@ node dist/app/server/server.mjs
 
 ---
 
-# Конфигурация на prerender
+# Prerender configuration
 
 Всички routes се prerender-ват по подразбиране:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Икони
+# Icons
 
 Този шаблон съдържа **Material Symbols Outlined** и те трябва да се използват като стандартен набор от икони в целия проект.
 
@@ -201,7 +201,7 @@ src/index.html
 
 ---
 
-# Преводи и езици
+# Translations And Languages
 
 UI преводите в момента са разположени в:
 
@@ -227,7 +227,7 @@ src/app/feature/language/language.service.ts
 
 ---
 
-# SCSS конвенции
+# SCSS Conventions
 
 Използвайте SCSS по начин, който следва съвременните Angular defaults:
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Домейн
+# Domain
 
 Персонализиран домейн, който трябва да смените със свой, за да работи всичко коректно; може да е всеки поддомейн `*.itkamianets.com`, ако още не се използва в нашата GitHub организация.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Стил на кода
+# Code Style
 
 Форматирането се изпълнява чрез:
 
@@ -329,7 +329,7 @@ CNAME
 
 ---
 
-# Използване на AI
+# AI Usage
 
 Ако използвате AI извън IDE и той не чете автоматично инструкциите на репозитория, първо копирайте съдържанието на `AGENTS.md` в prompt/context на AI.
 
@@ -337,7 +337,7 @@ CNAME
 
 ---
 
-# NPM scripts
+# NPM Scripts
 
 Стартиране на development:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Изисквания
+# Requirements
 
 Препоръчителна среда:
 
@@ -370,7 +370,7 @@ npm 11+
 
 ---
 
-# Ръководство за структурата на кода
+# Code structure guide
 
 ## Pages
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Структура на feature за модули, свързани с back-end
+## Feature structure for back-end connected modules
 
 Ако някоя част от app изисква собствена business logic и back-end интеграция, създайте отделна feature папка в:
 
@@ -493,7 +493,7 @@ src/app/feature/user/interfaces/user-response.interface.ts
 
 ---
 
-## Споделен общ код
+## Generic shared code
 
 Общ reusable код, който не е обвързан с конкретна feature, може да се поставя директно в `src/app`.
 
@@ -548,7 +548,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Обобщение за разработката
+## Development summary
 
 Използвайте тези разположения по подразбиране:
 
@@ -556,7 +556,7 @@ src/app/interfaces/select-option.interface.ts
 - `src/app/feature/<name>` - feature-specific code with back-end/business logic
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - generic shared code
 
-# Създаване на нов проект от този шаблон
+# Create a new project from this template
 
 Клонирайте default repository в нова папка с името на вашия проект (заменете `PROJECT_NAME` с името на вашия проект):
 
@@ -567,7 +567,7 @@ npm i
 npm run start
 ```
 
-### Какво правят тези команди
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Изтегля template repository и създава локална папка с име `PROJECT_NAME`.
@@ -580,7 +580,7 @@ npm run start
 
 След това отворете локалния URL, показан в терминала, обикновено [http://localhost:4200](http://localhost:4200)
 
-## Инициализирайте собствен git repository
+## Initialize your own git repository
 
 Ако искате да започнете от чисто вместо да запазите git history на шаблона, изтрийте наличната `.git` папка, инициализирайте нов repository и създайте първия commit.
 
@@ -602,6 +602,6 @@ git commit -m "chore(init): bootstrap project from ngx-default template"
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Лиценз
+# License
 
 MIT

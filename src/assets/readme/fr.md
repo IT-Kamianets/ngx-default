@@ -1,4 +1,4 @@
-# Angular Landing Template (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Modèle de démarrage Angular 21 moderne pour créer rapidement des landing pages avec **SSR prerendering**, **TailwindCSS** et **GitHub Pages deployment**.
 

@@ -1,4 +1,4 @@
-# Szablon Angular Landing Page (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Nowoczesny szablon startowy Angular 21 do tworzenia szybkich landing page'y z
 **prerenderingiem SSR**, **TailwindCSS** i **wdrożeniem na GitHub Pages**.
@@ -8,7 +8,7 @@ renderowane **w czasie budowania** dla SEO i wydajności.
 
 ---
 
-# Najważniejsze cechy
+# Acknowledge
 
 - Angular **21**
 - **Prerendering SSR** podczas budowania
@@ -35,7 +35,7 @@ szablon idealnie nadaje się do hostingu statycznego.
 
 ---
 
-# Struktura projektu
+# Project Structure
 
 ```
 src/
@@ -62,7 +62,7 @@ app.routes.server.ts
 
 ---
 
-# Rozwój
+# Development
 
 Uruchom serwer developerski:
 
@@ -101,7 +101,7 @@ Strony są **prerenderowane w czasie budowania** przy użyciu Angular SSR.
 
 ---
 
-# Uruchamianie serwera SSR (opcjonalnie)
+# Running the SSR server (optional)
 
 Szablon zawiera serwer Node dla SSR:
 
@@ -120,7 +120,7 @@ jest już generowany podczas budowania.
 
 ---
 
-# Konfiguracja prerenderingu
+# Prerender configuration
 
 Wszystkie trasy są domyślnie prerenderowane:
 
@@ -180,7 +180,7 @@ src/styles.scss
 
 ---
 
-# Ikony
+# Icons
 
 Ten szablon zawiera **Material Symbols Outlined** i powinny być one domyślnym zestawem ikon
 w całym projekcie.
@@ -208,7 +208,7 @@ mieć etykietę tekstową albo `aria-label`:
 
 ---
 
-# Tłumaczenia i języki
+# Translations And Languages
 
 Tłumaczenia UI znajdują się obecnie w:
 
@@ -236,7 +236,7 @@ Przy dodawaniu lub aktualizacji tłumaczeń:
 
 ---
 
-# Konwencje SCSS
+# SCSS Conventions
 
 Używaj SCSS w sposób zgodny z nowoczesnymi domyślnymi praktykami Angulara:
 
@@ -286,7 +286,7 @@ Ogranicz pliki `environment` do publicznej konfiguracji frontendu. Nie przechowu
 
 ---
 
-# Wdrażanie
+# Deployment
 
 Wdrażanie jest obsługiwane automatycznie przez **GitHub Actions**.
 
@@ -311,7 +311,7 @@ dist/app/browser
 
 ---
 
-# Domena
+# Domain
 
 Własna domena, którą należy dostosować do swojej domeny, aby wszystko działało poprawnie;
 można użyć dowolnej subdomeny `*.itkamianets.com`, jeśli nie jest jeszcze zajęta
@@ -329,7 +329,7 @@ CNAME
 
 ---
 
-# Styl kodu
+# Code Style
 
 Formatowanie jest obsługiwane przez:
 
@@ -344,7 +344,7 @@ Kluczowe konwencje:
 
 ---
 
-# Użycie AI
+# AI Usage
 
 Jeśli korzystasz z AI poza IDE i nie odczytuje ono automatycznie instrukcji repozytorium,
 najpierw skopiuj zawartość `AGENTS.md` do promptu lub kontekstu AI.
@@ -354,7 +354,7 @@ których Codex używa w IDE.
 
 ---
 
-# Skrypty NPM
+# NPM Scripts
 
 Uruchomienie developmentu:
 
@@ -376,7 +376,7 @@ npm run serve:ssr:app
 
 ---
 
-# Wymagania
+# Requirements
 
 Rekomendowane środowisko:
 
@@ -387,9 +387,9 @@ npm 11+
 
 ---
 
-# Przewodnik po strukturze kodu
+# Code structure guide
 
-## Strony
+## Pages
 
 Strony aplikacji powinny być tworzone w:
 
@@ -439,7 +439,7 @@ export const routes: Routes = [
 
 ---
 
-## Struktura feature dla modułów połączonych z back-endem
+## Feature structure for back-end connected modules
 
 Jeśli część aplikacji potrzebuje własnej logiki biznesowej i integracji z back-endem,
 utwórz dedykowany folder feature w:
@@ -513,7 +513,7 @@ i `language.service.ts`, kiedy taka struktura upraszcza feature.
 
 ---
 
-## Współdzielony kod generyczny
+## Generic shared code
 
 Generyczny kod wielokrotnego użytku, który nie jest powiązany z jednym konkretnym feature,
 może znajdować się bezpośrednio w `src/app`.
@@ -569,7 +569,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Podsumowanie rozwoju
+## Development summary
 
 Domyślnie używaj tych lokalizacji:
 
@@ -577,7 +577,7 @@ Domyślnie używaj tych lokalizacji:
 - `src/app/feature/<name>` - kod specyficzny dla feature z logiką biznesową/back-endem
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - generyczny kod współdzielony
 
-# Utwórz nowy projekt z tego szablonu
+# Create a new project from this template
 
 Sklonuj domyślne repozytorium do nowego folderu z nazwą projektu
 (zamień `PROJECT_NAME` na nazwę swojego projektu):
@@ -589,7 +589,7 @@ npm i
 npm run start
 ```
 
-### Co robią te polecenia
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Pobiera repozytorium szablonu i tworzy lokalny folder o nazwie `PROJECT_NAME`.
@@ -602,7 +602,7 @@ npm run start
 
 Następnie otwórz lokalny adres URL pokazany w terminalu, zwykle [http://localhost:4200](http://localhost:4200)
 
-## Zainicjalizuj własne repozytorium git
+## Initialize your own git repository
 
 Jeśli chcesz zacząć od zera zamiast zachowywać historię git szablonu, usuń istniejący
 folder `.git`, zainicjalizuj nowe repozytorium i utwórz pierwszy commit.
@@ -627,6 +627,6 @@ wyborem jest:
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licencja
+# License
 
 MIT

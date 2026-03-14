@@ -1,4 +1,4 @@
-# Predloga Angular Landing (SSR + Prerender)
+﻿# Angular Landing Template (SSR + Prerender)
 
 Sodobna začetna predloga Angular 21 za izdelavo hitrih pristajalnih strani z **SSR prerenderiranjem**, **TailwindCSS** in **objavo prek GitHub Pages**.
 
@@ -6,7 +6,7 @@ Ta predloga je optimizirana za statične pristajalne strani, kjer so strani izri
 
 ---
 
-# Ključne značilnosti
+# Acknowledge
 
 - Angular **21**
 - **SSR prerenderiranje** med gradnjo
@@ -31,7 +31,7 @@ Vendar se za objavo uporablja **prerenderiran browser output**, zato je odlična
 
 ---
 
-# Struktura projekta
+# Project Structure
 
 ```
 src/
@@ -58,7 +58,7 @@ app.routes.server.ts
 
 ---
 
-# Razvoj
+# Development
 
 Zaženite razvojni strežnik:
 
@@ -97,7 +97,7 @@ Strani se z Angular SSR **prerenderirajo ob času gradnje**.
 
 ---
 
-# Zagon SSR strežnika (izbirno)
+# Running the SSR server (optional)
 
 Predloga vključuje Node strežnik za SSR:
 
@@ -115,7 +115,7 @@ Za večino pristajalnih strani to **ni potrebno**, ker je prerenderiran HTML že
 
 ---
 
-# Konfiguracija prerenderiranja
+# Prerender configuration
 
 Vse poti se privzeto prerenderirajo:
 
@@ -175,7 +175,7 @@ src/styles.scss
 
 ---
 
-# Ikone
+# Icons
 
 Ta predloga vključuje **Material Symbols Outlined**, ki naj bodo privzeti nabor ikon v celotnem projektu.
 
@@ -201,7 +201,7 @@ Pri dostopnih gumbih naj bo ikona dekorativna, gumb pa naj ima besedilno oznako 
 
 ---
 
-# Prevodi in jeziki
+# Translations And Languages
 
 Prevodi uporabniškega vmesnika so trenutno v:
 
@@ -227,7 +227,7 @@ Pri dodajanju ali posodabljanju prevodov:
 
 ---
 
-# SCSS konvencije
+# SCSS Conventions
 
 SCSS uporabljajte na način, ki sledi sodobnim Angular privzetim nastavitvam:
 
@@ -249,7 +249,7 @@ src/styles/_theme.scss    -> shared theme CSS variables
 
 ---
 
-# Okolja
+# Environments
 
 Ta predloga vključuje Angular okoljske datoteke, ki jih lahko uporabite za različne postavitve izvajanja, kot sta lokalni razvoj in produkcijska gradnja.
 
@@ -273,7 +273,7 @@ Okoljske datoteke naj vsebujejo le javno konfiguracijo frontenda. Vanje ne shran
 
 ---
 
-# Objava
+# Deployment
 
 Objava se samodejno izvaja prek **GitHub Actions**.
 
@@ -298,7 +298,7 @@ dist/app/browser
 
 ---
 
-# Domena
+# Domain
 
 Lastna domena, ki jo morate prilagoditi svoji domeni, da bo pravilno delovala; lahko je katerakoli poddomena `*.itkamianets.com`, če še ni uporabljena v naši GitHub organizaciji.
 
@@ -314,7 +314,7 @@ CNAME
 
 ---
 
-# Slog kode
+# Code Style
 
 Formatiranje upravljata:
 
@@ -329,7 +329,7 @@ Ključne konvencije:
 
 ---
 
-# Uporaba AI
+# AI Usage
 
 Če uporabljate AI zunaj IDE-ja in ta samodejno ne prebere navodil repozitorija, najprej kopirajte vsebino `AGENTS.md` v AI prompt ali kontekst.
 
@@ -337,7 +337,7 @@ To zagotovi, da AI sledi istim pravilom, specifičnim za projekt, kot jih Codex 
 
 ---
 
-# NPM skripte
+# NPM Scripts
 
 Začetek razvoja:
 
@@ -359,7 +359,7 @@ npm run serve:ssr:app
 
 ---
 
-# Zahteve
+# Requirements
 
 Priporočeno okolje:
 
@@ -370,9 +370,9 @@ npm 11+
 
 ---
 
-# Vodnik po strukturi kode
+# Code structure guide
 
-## Strani
+## Pages
 
 Strani aplikacije ustvarjajte v:
 
@@ -422,7 +422,7 @@ export const routes: Routes = [
 
 ---
 
-## Feature struktura za module, povezane z backendom
+## Feature structure for back-end connected modules
 
 Če del aplikacije potrebuje lastno poslovno logiko in integracijo z backendom, ustvarite namensko feature mapo v:
 
@@ -493,7 +493,7 @@ Za majhne, osredotočene feature so sprejemljive tudi kolocirane datoteke, kot s
 
 ---
 
-## Splošna deljena koda
+## Generic shared code
 
 Splošna večkrat uporabna koda, ki ni vezana na en določen feature, je lahko neposredno pod `src/app`.
 
@@ -548,7 +548,7 @@ src/app/interfaces/select-option.interface.ts
 
 ---
 
-## Povzetek razvoja
+## Development summary
 
 Privzeto uporabljajte te lokacije:
 
@@ -556,7 +556,7 @@ Privzeto uporabljajte te lokacije:
 - `src/app/feature/<name>` - feature-specifična koda z backend/poslovno logiko
 - `src/app/components`, `directives`, `pipes`, `services`, `interfaces` - splošna deljena koda
 
-# Ustvarite nov projekt iz te predloge
+# Create a new project from this template
 
 Privzeti repozitorij klonirajte v novo mapo z imenom projekta (zamenjajte `PROJECT_NAME` z imenom svojega projekta):
 
@@ -567,7 +567,7 @@ npm i
 npm run start
 ```
 
-### Kaj naredijo ti ukazi
+### What these commands do
 
 - `git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME`
   Prenese repozitorij predloge in ustvari lokalno mapo z imenom `PROJECT_NAME`.
@@ -580,7 +580,7 @@ npm run start
 
 Nato odprite lokalni URL, prikazan v terminalu, običajno [http://localhost:4200](http://localhost:4200)
 
-## Inicializirajte svoj git repozitorij
+## Initialize your own git repository
 
 Če želite začeti na novo namesto da ohranite git zgodovino predloge, odstranite obstoječo mapo `.git`, inicializirajte nov repozitorij in ustvarite prvi commit.
 
@@ -602,6 +602,6 @@ Tudi za prvi commit uporabite Conventional Commit sporočilo. Dobra privzeta izb
 chore(init): bootstrap project from ngx-default template
 ```
 
-# Licenca
+# License
 
 MIT
