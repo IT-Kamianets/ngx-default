@@ -203,13 +203,14 @@ Pri prístupných tlačidlách nechajte ikonu dekoratívnu a na samotné tlačid
 
 # Translations And Languages
 
-UI preklady sa momentálne nachádzajú v:
+UI translations live in:
 
 ```text
-src/app/app.translates.ts
+src/i18n/<code>.ts
+src/i18n/index.ts
 ```
 
-Jazykové metadáta sa nachádzajú v:
+Language metadata lives in:
 
 ```text
 src/app/feature/language/language.type.ts
@@ -218,13 +219,48 @@ src/app/feature/language/language.const.ts
 src/app/feature/language/language.service.ts
 ```
 
-Pri pridávaní alebo aktualizácii prekladov:
+Translation bootstrap starts in:
 
-- udržiavajte language codes v súlade s `LanguageCode`
-- aktualizujte `LANGUAGES`, keď pridávate alebo premenúvate podporovaný jazyk
-- ukladajte texty prekladov a názvy jazykov ako skutočné UTF-8 znaky, nie escaped alebo znovu prekódovaný mojibake
-- anglické source strings nechávajte stabilné, pokiaľ nechcete aktualizovať každú translation entry
+```text
+src/app/app.config.ts
+```
 
+The app uses the `wacom` translation stack:
+
+- `provideTranslate(...)` registers the default language from `src/i18n/index.ts`
+- `LanguageService` switches languages with `TranslateService.setMany(...)`
+- English source text is used as the translation key
+
+When adding or updating translations:
+
+- add or update the matching `src/i18n/<code>.ts` dictionary
+- keep `src/i18n/index.ts` in sync with the available language files
+- keep language codes aligned with `LanguageCode`
+- update `LANGUAGES` when adding or renaming a supported language
+- keep English source text identical across templates, components, and `src/i18n/*`
+- store translation text and language labels as real UTF-8 characters, not escaped or re-encoded mojibake
+- remove unused translation keys when they are no longer referenced anywhere in the app
+
+Supported usage patterns:
+
+- Use the `translate` directive for plain element text content
+- Use the `translate` pipe for interpolations and attribute bindings
+- Use `TranslateService.translate('Key')()` in TypeScript when the translated value is needed inside `computed()` or composed strings
+
+Examples:
+
+```html
+<span translate>Open language menu</span>
+<button [aria-label]="'Go to homepage' | translate" type="button"></button>
+```
+
+```ts
+private readonly _translateService = inject(TranslateService);
+
+protected readonly toggleLabel = computed(() =>
+	this._translateService.translate('Switch to dark mode')(),
+);
+```
 ---
 
 # SCSS Conventions

@@ -2,7 +2,7 @@
 
 This project is an Angular 21 landing page template built around SSR prerendering, TailwindCSS v4, shared theme variables, and a minimal project structure.
 
-Keep contributions aligned with the current template conventions described in [README.md](/c:/Users/crack/work/itkp.ngx-default/README.md).
+Keep contributions aligned with the current template conventions described in [README.md](README.md).
 
 ## Core rules
 

@@ -210,13 +210,14 @@ Le haghaidh cnaipí inrochtana, coinnigh an deilbhín maisiúil agus cuir lipéa
 
 # Translations And Languages
 
-Tá aistriúcháin UI lonnaithe faoi láthair i:
+UI translations live in:
 
 ```text
-src/app/app.translates.ts
+src/i18n/<code>.ts
+src/i18n/index.ts
 ```
 
-Tá metadata teanga lonnaithe i:
+Language metadata lives in:
 
 ```text
 src/app/feature/language/language.type.ts
@@ -225,14 +226,48 @@ src/app/feature/language/language.const.ts
 src/app/feature/language/language.service.ts
 ```
 
-Agus aistriúcháin á gcur leis nó á nuashonrú:
+Translation bootstrap starts in:
 
-- coinnigh cóid teanga ailínithe le `LanguageCode`
-- nuashonraigh `LANGUAGES` agus teanga thacaithe á cur leis nó á hathainmniú
-- stóráil téacs aistriúcháin agus lipéid teanga mar fhíorcharachtair UTF-8, ní mar
-  theachtair éalaithe ná mar mojibake athchódaithe
-- coinnigh na teaghráin fhoinse Bhéarla cobhsaí mura bhfuil sé i gceist agat gach iontráil a nuashonrú
+```text
+src/app/app.config.ts
+```
 
+The app uses the `wacom` translation stack:
+
+- `provideTranslate(...)` registers the default language from `src/i18n/index.ts`
+- `LanguageService` switches languages with `TranslateService.setMany(...)`
+- English source text is used as the translation key
+
+When adding or updating translations:
+
+- add or update the matching `src/i18n/<code>.ts` dictionary
+- keep `src/i18n/index.ts` in sync with the available language files
+- keep language codes aligned with `LanguageCode`
+- update `LANGUAGES` when adding or renaming a supported language
+- keep English source text identical across templates, components, and `src/i18n/*`
+- store translation text and language labels as real UTF-8 characters, not escaped or re-encoded mojibake
+- remove unused translation keys when they are no longer referenced anywhere in the app
+
+Supported usage patterns:
+
+- Use the `translate` directive for plain element text content
+- Use the `translate` pipe for interpolations and attribute bindings
+- Use `TranslateService.translate('Key')()` in TypeScript when the translated value is needed inside `computed()` or composed strings
+
+Examples:
+
+```html
+<span translate>Open language menu</span>
+<button [aria-label]="'Go to homepage' | translate" type="button"></button>
+```
+
+```ts
+private readonly _translateService = inject(TranslateService);
+
+protected readonly toggleLabel = computed(() =>
+	this._translateService.translate('Switch to dark mode')(),
+);
+```
 ---
 
 # SCSS Conventions

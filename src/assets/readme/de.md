@@ -203,13 +203,14 @@ Für barrierefreie Buttons sollte das Icon dekorativ bleiben, und der Button sel
 
 # Translations And Languages
 
-UI translations befinden sich aktuell in:
+UI translations live in:
 
 ```text
-src/app/app.translates.ts
+src/i18n/<code>.ts
+src/i18n/index.ts
 ```
 
-Sprachmetadaten befinden sich in:
+Language metadata lives in:
 
 ```text
 src/app/feature/language/language.type.ts
@@ -218,13 +219,48 @@ src/app/feature/language/language.const.ts
 src/app/feature/language/language.service.ts
 ```
 
-Beim Hinzufügen oder Aktualisieren von translations:
+Translation bootstrap starts in:
 
-- language codes mit `LanguageCode` konsistent halten
-- `LANGUAGES` aktualisieren, wenn eine unterstützte Sprache hinzugefügt oder umbenannt wird
-- translation text und language labels als echte UTF-8-Zeichen speichern, nicht escaped oder als erneut kodiertes Mojibake
-- English source strings stabil halten, es sei denn, du willst jeden translation entry aktualisieren
+```text
+src/app/app.config.ts
+```
 
+The app uses the `wacom` translation stack:
+
+- `provideTranslate(...)` registers the default language from `src/i18n/index.ts`
+- `LanguageService` switches languages with `TranslateService.setMany(...)`
+- English source text is used as the translation key
+
+When adding or updating translations:
+
+- add or update the matching `src/i18n/<code>.ts` dictionary
+- keep `src/i18n/index.ts` in sync with the available language files
+- keep language codes aligned with `LanguageCode`
+- update `LANGUAGES` when adding or renaming a supported language
+- keep English source text identical across templates, components, and `src/i18n/*`
+- store translation text and language labels as real UTF-8 characters, not escaped or re-encoded mojibake
+- remove unused translation keys when they are no longer referenced anywhere in the app
+
+Supported usage patterns:
+
+- Use the `translate` directive for plain element text content
+- Use the `translate` pipe for interpolations and attribute bindings
+- Use `TranslateService.translate('Key')()` in TypeScript when the translated value is needed inside `computed()` or composed strings
+
+Examples:
+
+```html
+<span translate>Open language menu</span>
+<button [aria-label]="'Go to homepage' | translate" type="button"></button>
+```
+
+```ts
+private readonly _translateService = inject(TranslateService);
+
+protected readonly toggleLabel = computed(() =>
+	this._translateService.translate('Switch to dark mode')(),
+);
+```
 ---
 
 # SCSS Conventions
