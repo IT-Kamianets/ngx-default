@@ -1,4 +1,4 @@
-﻿# Angular Landing Template (SSR + Prerender)
+# Angular Landing Template (SSR + Prerender)
 
 Modèle de démarrage Angular 21 moderne pour créer rapidement des landing pages avec **SSR prerendering**, **TailwindCSS** et **GitHub Pages deployment**.
 
@@ -138,6 +138,54 @@ export const serverRoutes: ServerRoute[] = [
 
 Cela permet à Angular de générer du HTML statique pour chaque route pendant le build.
 
+---
+
+# Bootstrap Data
+
+The app includes a small bootstrap data flow for company and item data.
+
+Main files:
+
+```text
+src/app/app.config.ts
+src/app/feature/bootstrap/bootstrap.service.ts
+src/app/feature/bootstrap/bootstrap.interface.ts
+src/app/feature/company/company.service.ts
+src/app/feature/item/item.service.ts
+src/environments/environment.prod.ts
+```
+
+How it works:
+
+- `APP_INITIALIZER` runs `BootstrapService.initialize()` during app startup
+- on the server, bootstrap data is fetched from `${environment.apiUrl}/api/regionit/bootstrap/${environment.companyId}`
+- fetched data is stored in Angular `TransferState`
+- on the browser, transferred data is applied immediately and then refreshed in the background
+- if no remote data is available, the app falls back to `environment.company` and `environment.items`
+
+Bootstrap payload shape:
+
+```ts
+export interface BootstrapData {
+	company?: Company;
+	items?: Item[];
+}
+```
+
+Environment keys involved:
+
+- `apiUrl` - API host used for bootstrap and status checks
+- `companyId` - company identifier sent to the bootstrap endpoint
+- `company` - fallback company data used before or instead of API data
+- `items` - fallback item list used before or instead of API data
+- `onApiFall` - controls what happens when the API is unavailable
+
+Current fallback behavior in code:
+
+- `'app'` keeps rendering the app with local environment data
+- `'app reload'` keeps polling `${environment.apiUrl}/status` and reloads when the API becomes available
+
+This keeps SSR and prerender safe while still allowing the app to hydrate with API data when it exists.
 ---
 
 # TailwindCSS
