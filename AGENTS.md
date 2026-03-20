@@ -53,6 +53,16 @@ This file defines repo-specific instructions for coding agents working in this p
 - Decorative icons should use `aria-hidden="true"`.
 - Interactive controls must have an accessible text label or `aria-label`.
 
+## Wacom
+
+- This project uses `wacom` as a shared Angular utility layer for configuration, translation, theming, and common app services.
+- Prefer integrating with existing `wacom` APIs before introducing custom wrappers for concerns that the library already covers.
+- Keep `wacom` usage SSR-safe. The library is designed to guard browser-only APIs, but app code still must not assume `window`, `document.defaultView`, storage, WebRTC, sockets, or similar browser features are available during prerender or server execution.
+- Bootstrap shared library features through the existing provider-based setup in `src/app/app.config.ts`. In this repo, translation is initialized with `provideTranslate(...)`; do not introduce a parallel bootstrap path without a clear need.
+- When working on theme, translation, network, SEO/meta, storage, realtime, or utility concerns, check whether an existing `wacom` service already owns that responsibility before adding new application services.
+- Favor `wacom` services and helpers such as `TranslateService`, `ThemeService`, `MetaService`, `StoreService`, `NetworkService`, `EmitterService`, `CrudService`, `HttpService`, and shared directives/pipes when the codebase already uses them.
+- If a `wacom` capability is browser-driven, isolate initialization behind SSR-safe guards and keep server rendering functional even when the feature is inactive.
+
 ## Translations And Encoding
 
 - This project uses the `wacom` translation stack: `provideTranslate`, `TranslateService`, `TranslatePipe`, and `Translate`.
@@ -69,7 +79,7 @@ This file defines repo-specific instructions for coding agents working in this p
 - Keep translation bootstrap and language switching on the existing `provideTranslate(...)` and `TranslateService.setMany(...)` path; do not hand-roll parallel translation registries.
 - Do not introduce a second translation source such as `src/app/app.translates.ts`; use `src/i18n` as the single source of truth.
 - When removing code, check whether its translation keys are still used elsewhere in the app; if a key is no longer referenced anywhere, remove it from the translation dictionaries as part of the same change.
-- Preserve native language characters as UTF-8 text; do not introduce mojibake such as `FranÃ§ais`.
+- Preserve native language characters as UTF-8 text; do not introduce mojibake such as `François` rendered incorrectly.
 - When adding a language, update the new `src/i18n/<code>.ts` file, `src/i18n/index.ts`, and the language metadata files.
 
 ## Code Change Guidance
