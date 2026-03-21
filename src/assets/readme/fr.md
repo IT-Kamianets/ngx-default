@@ -185,8 +185,7 @@ Current fallback behavior in code:
 - `'app'` keeps rendering the app with local environment data
 - `'app reload'` keeps polling `${environment.apiUrl}/status` and reloads when the API becomes available
 
-This keeps SSR and prerender safe while still allowing the app to hydrate with API data when it exists.
----
+## This keeps SSR and prerender safe while still allowing the app to hydrate with API data when it exists.
 
 # TailwindCSS
 
@@ -309,6 +308,7 @@ protected readonly toggleLabel = computed(() =>
 	this._translateService.translate('Switch to dark mode')(),
 );
 ```
+
 ---
 
 # SCSS Conventions

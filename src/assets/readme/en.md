@@ -310,6 +310,7 @@ protected readonly toggleLabel = computed(() =>
 	this._translateService.translate('Switch to dark mode')(),
 );
 ```
+
 ---
 
 # SCSS Conventions
