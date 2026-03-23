@@ -1,9 +1,9 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
-import { TranslateService } from 'wacom';
+import { Translate, TranslateService } from 'wacom';
 
 import { environment } from '../../../environments/environment';
-import { translates } from '../../../i18n';
+import { LanguageKey, translationLoaders } from '../../../i18n';
 import { LANGUAGES } from './language.const';
 import { LanguageOption } from './language.interface';
 import { LanguageCode } from './language.type';
@@ -13,14 +13,15 @@ export class LanguageService {
 	private readonly _doc = inject(DOCUMENT);
 	private readonly _translateService = inject(TranslateService);
 	private readonly _isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-	private readonly _storageKey = 'app-language';
 
 	readonly languages = signal<LanguageOption[]>(LANGUAGES);
-	private readonly _defaultLanguage = this._resolveDefaultLanguage();
+	readonly language = signal<LanguageCode>(this._resolveDefaultLanguage());
 
-	readonly language = signal<LanguageCode>(this._defaultLanguage);
+	private readonly _storageKey = 'app-language';
+	private readonly _translationsCache = new Map<LanguageCode, Promise<Translate[]>>();
+	private readonly _defaultLanguage = this.language();
 
-	init() {
+	async init() {
 		const stored = this._isBrowser
 			? this._doc.defaultView?.localStorage.getItem(this._storageKey)
 			: null;
@@ -28,12 +29,14 @@ export class LanguageService {
 			? (stored as LanguageCode)
 			: this._defaultLanguage;
 
-		this.setLanguage(language);
+		await this.setLanguage(language);
 	}
 
-	setLanguage(language: LanguageCode) {
+	async setLanguage(language: LanguageCode) {
+		const translations = await this._loadTranslations(language);
+
 		this.language.set(language);
-		this._translateService.setMany(this._buildTranslations(language));
+		this._translateService.setMany(translations);
 		this._doc.documentElement.lang = this.getLanguage(language).htmlLang;
 
 		if (this._isBrowser) {
@@ -41,20 +44,31 @@ export class LanguageService {
 		}
 	}
 
-	nextLanguage() {
+	async nextLanguage() {
 		const languages = this.languages();
 		const currentIndex = languages.findIndex((language) => language.code === this.language());
 		const nextIndex = (currentIndex + 1) % languages.length;
 
-		this.setLanguage(languages[nextIndex]?.code ?? this._defaultLanguage);
+		await this.setLanguage(languages[nextIndex]?.code ?? this._defaultLanguage);
 	}
 
 	getLanguage(code: LanguageCode) {
 		return this.languages().find((language) => language.code === code) ?? this.languages()[0]!;
 	}
 
-	private _buildTranslations(language: LanguageCode) {
-		return translates[language];
+	private _loadTranslations(language: LanguageCode) {
+		const cached = this._translationsCache.get(language);
+
+		if (cached) {
+			return cached;
+		}
+
+		const loader = translationLoaders[language as LanguageKey];
+		const translations = loader();
+
+		this._translationsCache.set(language, translations);
+
+		return translations;
 	}
 
 	private _isSupportedLanguage(value: string | null | undefined) {

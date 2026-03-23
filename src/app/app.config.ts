@@ -9,11 +9,11 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideTranslate } from 'wacom';
-import { environment } from '../environments/environment';
-import { LanguageKey, translates } from '../i18n';
 import { routes } from './app.routes';
 import { BootstrapService } from './feature/bootstrap/bootstrap.service';
+import { LanguageService } from './feature/language/language.service';
 
+const initializeLanguage = (languageService: LanguageService) => () => languageService.init();
 const initializeBootstrapData = (bootstrapService: BootstrapService) => () =>
 	bootstrapService.initialize();
 
@@ -24,7 +24,13 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes),
 		provideHttpClient(withFetch()),
 		provideClientHydration(withEventReplay()),
-		provideTranslate(translates[environment.defaultLanguage as LanguageKey]),
+		provideTranslate(),
+		{
+			provide: APP_INITIALIZER,
+			useFactory: initializeLanguage,
+			deps: [LanguageService],
+			multi: true,
+		},
 		{
 			provide: APP_INITIALIZER,
 			useFactory: initializeBootstrapData,

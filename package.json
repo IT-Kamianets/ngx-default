@@ -6,7 +6,6 @@
 		"build": "ng build --configuration=production",
 		"serve:ssr:app": "node dist/app/server/server.mjs"
 	},
-	"packageManager": "npm@11.6.2",
 	"dependencies": {
 		"@angular/common": "21.2.5",
 		"@angular/compiler": "21.2.5",

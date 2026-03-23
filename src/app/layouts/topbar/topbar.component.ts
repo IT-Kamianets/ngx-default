@@ -41,7 +41,6 @@ export class TopbarComponent {
 
 	constructor() {
 		this._themeService.init();
-		this._languageService.init();
 	}
 
 	protected toggleMode() {
@@ -50,7 +49,7 @@ export class TopbarComponent {
 	}
 
 	protected nextLanguage() {
-		this._languageService.nextLanguage();
+		void this._languageService.nextLanguage();
 		this.languageMenuOpen.set(false);
 	}
 
@@ -59,7 +58,7 @@ export class TopbarComponent {
 	}
 
 	protected setLanguage(language: LanguageOption) {
-		this._languageService.setLanguage(language.code);
+		void this._languageService.setLanguage(language.code);
 		this.languageMenuOpen.set(false);
 	}
 
