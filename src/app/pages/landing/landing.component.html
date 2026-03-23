@@ -1,6 +1,499 @@
-<section class="mx-auto max-w-4xl px-6 py-10 text-[var(--c-text-primary)]">
-	<article
-		class="landing-prose prose prose-lg max-w-none rounded-[var(--radius-card)] bg-[var(--c-bg-tertiary)] p-6 shadow-[var(--shadow-sm)] prose-li:marker:text-[var(--c-primary)] sm:p-8"
-		[innerHTML]="html()"
-	></article>
+<section class="landing-shell">
+	<div class="landing-backdrop" aria-hidden="true"></div>
+
+	<div class="mx-auto flex max-w-[var(--container)] flex-col gap-6 px-4 py-8 sm:px-6 sm:py-10">
+		<section class="landing-panel landing-hero">
+			<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+				<div class="max-w-3xl">
+					<p class="landing-eyebrow">Angular 21 / SSR + Prerender / TailwindCSS v4</p>
+					<h1 class="landing-title">Angular Landing Template</h1>
+					<p class="landing-lead">
+						Modern Angular starter template for building fast landing pages with SSR
+						prerendering, TailwindCSS, and GitHub Pages deployment.
+					</p>
+					<p class="landing-copy">
+						This template is optimized for static landing sites where pages are rendered at build
+						time for SEO and performance.
+					</p>
+				</div>
+
+				<div class="landing-stats">
+					<div class="landing-stat">
+						<span class="landing-stat__label">Build output</span>
+						<strong>`dist/app/browser`</strong>
+					</div>
+					<div class="landing-stat">
+						<span class="landing-stat__label">Server output</span>
+						<strong>`dist/app/server`</strong>
+					</div>
+					<div class="landing-stat">
+						<span class="landing-stat__label">Default host</span>
+						<strong>GitHub Pages</strong>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="landing-grid landing-grid--three">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Acknowledge</h2>
+				<ul class="landing-list">
+					<li>Angular 21</li>
+					<li>SSR prerendering during build</li>
+					<li>Zoneless Angular</li>
+					<li>Signals for template-driven UI state</li>
+					<li>Angular Signal Forms for new forms</li>
+					<li>OnPush change detection by default</li>
+				</ul>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">UI Stack</h2>
+				<ul class="landing-list">
+					<li>TailwindCSS v4</li>
+					<li>Theme CSS variables from `src/styles/_theme.scss`</li>
+					<li>Material Symbols Outlined</li>
+					<li>Prettier formatting</li>
+					<li>Clean minimal project structure</li>
+				</ul>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Build Artifacts</h2>
+				<p class="landing-copy">
+					The project builds both browser and server output, but deployment uses the browser
+					prerendered output for static hosting.
+				</p>
+				<div class="landing-code">
+					<pre><code>dist/app/browser
+dist/app/server</code></pre>
+				</div>
+			</article>
+		</section>
+
+		<section class="landing-grid landing-grid--two">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Project Structure</h2>
+				<div class="landing-code">
+					<pre><code>src/
+  app/
+    app.component.ts
+    app.config.ts
+    app.config.server.ts
+    app.routes.ts
+    app.routes.server.ts
+    layouts/
+    pages/
+  assets/
+  environments/
+  i18n/
+  styles/
+  styles.scss</code></pre>
+				</div>
+				<p class="landing-copy">
+					SSR configuration lives in `app.config.server.ts` and `app.routes.server.ts`.
+				</p>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Development</h2>
+				<p class="landing-copy">Start the development server with one of the commands below.</p>
+				<div class="landing-code">
+					<pre><code>npm start
+ng serve</code></pre>
+				</div>
+				<p class="landing-copy">
+					Application runs at `http://localhost:4200` and development mode runs as a normal
+					Angular SPA.
+				</p>
+			</article>
+		</section>
+
+		<section class="landing-grid landing-grid--two">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Build</h2>
+				<p class="landing-copy">Build the project with:</p>
+				<div class="landing-code">
+					<pre><code>npm run build</code></pre>
+				</div>
+				<p class="landing-copy">
+					Pages are prerendered at build time using Angular SSR.
+				</p>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Running The SSR Server</h2>
+				<p class="landing-copy">
+					The template includes a Node server for SSR, but for most landing pages this is not
+					required because prerendered HTML is already generated.
+				</p>
+				<div class="landing-code">
+					<pre><code>npm run serve:ssr:app
+node dist/app/server/server.mjs</code></pre>
+				</div>
+			</article>
+		</section>
+
+		<section class="landing-panel">
+			<h2 class="landing-section-title">Prerender Configuration</h2>
+			<p class="landing-copy">All routes are prerendered by default in `src/app/app.routes.server.ts`.</p>
+			<div class="landing-code">
+				<pre><code>RenderMode.Prerender
+
+export const serverRoutes: ServerRoute[] = [
+	&#123;
+		path: '**',
+		renderMode: RenderMode.Prerender,
+	&#125;,
+];</code></pre>
+			</div>
+			<p class="landing-copy">
+				This makes Angular generate static HTML for every route during build.
+			</p>
+		</section>
+
+		<section class="landing-panel">
+			<h2 class="landing-section-title">Bootstrap Data</h2>
+			<p class="landing-copy">
+				The app includes a small bootstrap data flow for company and item data.
+			</p>
+			<div class="landing-code">
+				<pre><code>src/app/app.config.ts
+src/app/feature/bootstrap/bootstrap.service.ts
+src/app/feature/bootstrap/bootstrap.interface.ts
+src/app/feature/company/company.service.ts
+src/app/feature/item/item.service.ts
+src/environments/environment.prod.ts</code></pre>
+			</div>
+			<div class="landing-grid landing-grid--two">
+				<div>
+					<h3 class="landing-subtitle">How it works</h3>
+					<ul class="landing-list">
+						<li>`APP_INITIALIZER` runs `BootstrapService.initialize()` during app startup.</li>
+						<li>
+							On the server, bootstrap data is fetched from
+							`$&#123;environment.apiUrl&#125;/api/regionit/bootstrap/$&#123;environment.companyId&#125;`.
+						</li>
+						<li>Fetched data is stored in Angular `TransferState`.</li>
+						<li>On the browser, transferred data is applied immediately and refreshed later.</li>
+						<li>
+							If no remote data is available, the app falls back to `environment.company` and
+							`environment.items`.
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="landing-subtitle">Payload shape</h3>
+					<div class="landing-code">
+						<pre><code>export interface BootstrapData &#123;
+	company?: Company;
+	items?: Item[];
+&#125;</code></pre>
+					</div>
+					<h3 class="landing-subtitle">Environment keys</h3>
+					<ul class="landing-list">
+						<li>`apiUrl` for bootstrap and status checks</li>
+						<li>`companyId` sent to the bootstrap endpoint</li>
+						<li>`company` fallback company data</li>
+						<li>`items` fallback item list</li>
+						<li>`onApiFall` for unavailable API behavior</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="landing-grid landing-grid--two">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">TailwindCSS</h2>
+				<p class="landing-copy">Tailwind is configured via `.postcssrc.json`.</p>
+				<ul class="landing-list">
+					<li>Prefer utilities for layout, spacing, typography, colors, borders, and sizing.</li>
+					<li>Use SCSS only when Tailwind is not the right tool.</li>
+					<li>Global styles live in `src/styles.scss`.</li>
+				</ul>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Icons</h2>
+				<p class="landing-copy">
+					Material Symbols Outlined are loaded in `src/index.html` and should be the default icon
+					set across the project.
+				</p>
+				<div class="landing-code">
+					<pre><code>&lt;span class="material-symbols-outlined" aria-hidden="true"&gt;arrow_forward&lt;/span&gt;
+
+&lt;button type="button" aria-label="Open menu"&gt;
+	&lt;span class="material-symbols-outlined" aria-hidden="true"&gt;menu&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+				</div>
+			</article>
+		</section>
+
+		<section class="landing-panel">
+			<h2 class="landing-section-title">Translations And Languages</h2>
+			<div class="landing-grid landing-grid--two">
+				<div>
+					<p class="landing-copy">UI translations live in:</p>
+					<div class="landing-code">
+						<pre><code>src/i18n/&lt;code&gt;.ts
+src/i18n/index.ts</code></pre>
+					</div>
+					<p class="landing-copy">Language metadata lives in:</p>
+					<div class="landing-code">
+						<pre><code>src/app/feature/language/language.type.ts
+src/app/feature/language/language.interface.ts
+src/app/feature/language/language.const.ts
+src/app/feature/language/language.service.ts</code></pre>
+					</div>
+				</div>
+				<div>
+					<p class="landing-copy">Translation bootstrap starts in `src/app/app.config.ts`.</p>
+					<ul class="landing-list">
+						<li>`provideTranslate(...)` registers the default language.</li>
+						<li>`LanguageService` switches languages with `TranslateService.setMany(...)`.</li>
+						<li>English source text is used as the translation key.</li>
+						<li>Remove unused translation keys when they are no longer referenced.</li>
+						<li>Store translation text and language labels as real UTF-8 characters.</li>
+					</ul>
+				</div>
+			</div>
+			<h3 class="landing-subtitle">Supported usage patterns</h3>
+			<ul class="landing-list">
+				<li>Use the `translate` directive for plain element text content.</li>
+				<li>Use the `translate` pipe for interpolations and attribute bindings.</li>
+				<li>
+					Use `TranslateService.translate('Key')()` in TypeScript when a translated value is needed
+					inside `computed()` or composed strings.
+				</li>
+			</ul>
+			<div class="landing-code">
+				<pre><code>&lt;span translate&gt;Open language menu&lt;/span&gt;
+&lt;button [aria-label]="'Go to homepage' | translate" type="button"&gt;&lt;/button&gt;
+
+private readonly _translateService = inject(TranslateService);
+
+protected readonly toggleLabel = computed(() =&gt;
+	this._translateService.translate('Switch to dark mode')(),
+);</code></pre>
+			</div>
+		</section>
+
+		<section class="landing-grid landing-grid--three">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">SCSS Conventions</h2>
+				<ul class="landing-list">
+					<li>Keep most styles inside the component `.scss` file.</li>
+					<li>Use `src/styles.scss` only for truly global styles.</li>
+					<li>Prefer CSS variables for colors, spacing, and theming.</li>
+					<li>Avoid deep selector nesting and `::ng-deep` unless required.</li>
+				</ul>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Environments</h2>
+				<div class="landing-code">
+					<pre><code>src/environments/environment.ts
+src/environments/environment.prod.ts</code></pre>
+				</div>
+				<ul class="landing-list">
+					<li>API base URLs</li>
+					<li>Feature flags</li>
+					<li>Analytics toggles</li>
+					<li>External service configuration</li>
+				</ul>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Code Style</h2>
+				<ul class="landing-list">
+					<li>Formatting is handled by `.editorconfig` and `.prettierrc`.</li>
+					<li>Tabs</li>
+					<li>Single quotes</li>
+					<li>100 character line width</li>
+				</ul>
+			</article>
+		</section>
+
+		<section class="landing-grid landing-grid--two">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Deployment</h2>
+				<p class="landing-copy">Deployment is handled automatically via GitHub Actions.</p>
+				<div class="landing-code">
+					<pre><code>.github/workflows/deploy.yml</code></pre>
+				</div>
+				<ol class="landing-list landing-list--ordered">
+					<li>Install dependencies</li>
+					<li>Build Angular app</li>
+					<li>Copy `CNAME`</li>
+					<li>Push build output to `gh-pages`</li>
+				</ol>
+				<p class="landing-copy">The deployed folder is `dist/app/browser`.</p>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Domain</h2>
+				<p class="landing-copy">
+					Custom domain which you should adjust to your own domain so it works properly, any
+					subdomain of `*.itkamianets.com` in case it's not used before on our github org.
+				</p>
+				<div class="landing-code">
+					<pre><code>ngx.itkamianets.com</code></pre>
+				</div>
+				<p class="landing-copy">Configured via `CNAME`.</p>
+			</article>
+		</section>
+
+		<section class="landing-grid landing-grid--three">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">AI Usage</h2>
+				<p class="landing-copy">
+					If you use AI outside the IDE and it does not automatically read repository instructions,
+					copy the contents of `AGENTS.md` into the AI prompt or context first.
+				</p>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">NPM Scripts</h2>
+				<div class="landing-code">
+					<pre><code>npm start
+npm run build
+npm run serve:ssr:app</code></pre>
+				</div>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Requirements</h2>
+				<div class="landing-code">
+					<pre><code>Node.js 20+
+npm 11+</code></pre>
+				</div>
+			</article>
+		</section>
+
+		<section class="landing-panel">
+			<h2 class="landing-section-title">Code Structure Guide</h2>
+			<div class="landing-grid landing-grid--two">
+				<div>
+					<h3 class="landing-subtitle">Pages</h3>
+					<p class="landing-copy">Application pages should be created inside `src/app/pages/`.</p>
+					<div class="landing-code">
+						<pre><code>src/app/pages/home/home.component.ts
+src/app/pages/about/about.component.ts</code></pre>
+					</div>
+					<div class="landing-code">
+						<pre><code>ng generate component pages/home
+ng g c pages/home</code></pre>
+					</div>
+					<p class="landing-copy">Pages should be lazy loaded from `src/app/app.routes.ts`.</p>
+					<div class="landing-code">
+						<pre><code>import &#123; Routes &#125; from '@angular/router';
+
+export const routes: Routes = [
+	&#123;
+		path: '',
+		loadComponent: () =&gt; import('./pages/home/home.component').then((m) =&gt; m.HomeComponent),
+	&#125;,
+	&#123;
+		path: 'about',
+		loadComponent: () =&gt; import('./pages/about/about.component').then((m) =&gt; m.AboutComponent),
+	&#125;,
+];</code></pre>
+					</div>
+				</div>
+
+				<div>
+					<h3 class="landing-subtitle">Feature Structure</h3>
+					<p class="landing-copy">
+						If a part of the app needs its own business logic and back-end integration, create a
+						dedicated feature folder inside `src/app/feature/`.
+					</p>
+					<div class="landing-code">
+						<pre><code>src/app/feature/user/
+src/app/feature/user/components/
+src/app/feature/user/directives/
+src/app/feature/user/interfaces/
+src/app/feature/user/pages/
+src/app/feature/user/pipes/
+src/app/feature/user/services/</code></pre>
+					</div>
+					<div class="landing-code">
+						<pre><code>ng g c feature/user/pages/user-profile
+ng g c feature/user/components/user-card
+ng g d feature/user/directives/user-focus
+ng g p feature/user/pipes/user-name
+ng g s feature/user/services/user</code></pre>
+					</div>
+				</div>
+			</div>
+			<div class="landing-grid landing-grid--two">
+				<div>
+					<h3 class="landing-subtitle">Generic Shared Code</h3>
+					<p class="landing-copy">
+						Generic reusable code that is not tied to one specific feature can live directly under
+						`src/app`.
+					</p>
+					<div class="landing-code">
+						<pre><code>src/app/components/
+src/app/directives/
+src/app/interfaces/
+src/app/pipes/
+src/app/services/</code></pre>
+					</div>
+					<div class="landing-code">
+						<pre><code>ng g c components/page-header
+ng g d directives/autofocus
+ng g p pipes/phone
+ng g s services/api</code></pre>
+					</div>
+				</div>
+
+				<div>
+					<h3 class="landing-subtitle">Development Summary</h3>
+					<ul class="landing-list">
+						<li>`src/app/pages` for app-level lazy loaded pages</li>
+						<li>`src/app/feature/&lt;name&gt;` for feature-specific code</li>
+						<li>`src/app/components`, `directives`, `pipes`, `services`, `interfaces` for shared code</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="landing-grid landing-grid--two">
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Create A New Project From This Template</h2>
+				<div class="landing-code">
+					<pre><code>git clone https://github.com/IT-Kamianets/ngx-default.git PROJECT_NAME
+cd PROJECT_NAME
+npm i
+npm run start</code></pre>
+				</div>
+				<ul class="landing-list">
+					<li>`git clone` downloads the template into a new project folder.</li>
+					<li>`cd PROJECT_NAME` opens the project folder.</li>
+					<li>`npm i` installs dependencies from `package.json`.</li>
+					<li>`npm run start` starts the local development server.</li>
+				</ul>
+			</article>
+
+			<article class="landing-panel">
+				<h2 class="landing-section-title">Initialize Your Own Git Repository</h2>
+				<p class="landing-copy">
+					If you want to start fresh instead of keeping the template git history, remove the
+					existing `.git` folder, initialize a new repository, and create the first commit.
+				</p>
+				<div class="landing-code">
+					<pre><code>rm -rf .git
+git init
+git remote add origin https://github.com/IT-Kamianets/PROJECT_NAME.git
+git add .
+git commit -m "chore(init): bootstrap project from ngx-default template"</code></pre>
+				</div>
+			</article>
+		</section>
+
+		<section class="landing-panel">
+			<h2 class="landing-section-title">License</h2>
+			<p class="landing-copy">MIT</p>
+		</section>
+	</div>
 </section>
