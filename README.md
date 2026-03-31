@@ -425,6 +425,246 @@ This ensures the AI follows the same project-specific rules that Codex uses insi
 
 ---
 
+# MCP Servers For Codex, Copilot, And Gemini
+
+This project uses these MCP servers:
+
+```toml
+[mcp_servers.angular-cli]
+command = "npx"
+args = ["-y", "@angular/cli", "mcp"]
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+
+[mcp_servers.typescript-lsp]
+command = "npx"
+args = ["-y", "ts-lsp-mcp", "serve", "--stdio"]
+```
+
+Use the following setup depending on the client.
+
+## Codex
+
+Codex supports both user-level config and repo-level config through TOML files:
+
+- global: `~/.codex/config.toml`
+- project-local: `.codex/config.toml`
+
+Codex CLI and the Codex IDE extension share the same MCP configuration.
+
+### Codex global config
+
+Add this to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.angular-cli]
+command = "npx"
+args = ["-y", "@angular/cli", "mcp"]
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+
+[mcp_servers.typescript-lsp]
+command = "npx"
+args = ["-y", "ts-lsp-mcp", "serve", "--stdio"]
+```
+
+### Codex project-local config
+
+Create `.codex/config.toml` in the repository root and add the same block:
+
+```toml
+[mcp_servers.angular-cli]
+command = "npx"
+args = ["-y", "@angular/cli", "mcp"]
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+
+[mcp_servers.typescript-lsp]
+command = "npx"
+args = ["-y", "ts-lsp-mcp", "serve", "--stdio"]
+```
+
+If Codex does not load project-local MCP config, mark the repo as trusted in your user config:
+
+```toml
+[projects.'\\?\C:\Users\YOUR_USER\work\itkp.ngx-default']
+trust_level = "trusted"
+```
+
+### Codex CLI commands
+
+You can add the same servers with the CLI instead of editing TOML manually:
+
+```bash
+codex mcp add angular-cli -- npx -y @angular/cli mcp
+codex mcp add context7 -- npx -y @upstash/context7-mcp
+codex mcp add typescript-lsp -- npx -y ts-lsp-mcp serve --stdio
+```
+
+Useful checks:
+
+```bash
+codex mcp --help
+codex mcp list
+```
+
+## GitHub Copilot
+
+For GitHub Copilot in VS Code, MCP servers are configured with `mcp.json`:
+
+- global: your VS Code user MCP config
+- project-local: `.vscode/mcp.json`
+
+The project-local file is the easiest way to share MCP setup with everyone working in the repo.
+
+### Copilot project-local config
+
+Create `.vscode/mcp.json`:
+
+```json
+{
+	"servers": {
+		"angular-cli": {
+			"command": "npx",
+			"args": ["-y", "@angular/cli", "mcp"]
+		},
+		"context7": {
+			"command": "npx",
+			"args": ["-y", "@upstash/context7-mcp"]
+		},
+		"typescript-lsp": {
+			"command": "npx",
+			"args": ["-y", "ts-lsp-mcp", "serve", "--stdio"]
+		}
+	}
+}
+```
+
+### Copilot global config
+
+Open the Command Palette in VS Code and run:
+
+```text
+MCP: Open User Configuration
+```
+
+Then add the same JSON shown above.
+
+You can also use:
+
+```text
+MCP: Add Server
+```
+
+and choose either `Workspace` or `Global`.
+
+### Copilot notes
+
+- On Windows, these MCP servers run as local processes through `npx`.
+- After saving `mcp.json`, use `MCP: List Servers` to verify they started.
+- If your team uses Copilot CLI separately, its MCP config is different and lives in `~/.copilot/mcp-config.json`.
+
+## Gemini CLI
+
+Gemini CLI supports both user and project scope through `settings.json`:
+
+- global: `~/.gemini/settings.json`
+- project-local: `.gemini/settings.json`
+
+### Gemini global config
+
+Add this to `~/.gemini/settings.json`:
+
+```json
+{
+	"mcpServers": {
+		"angular-cli": {
+			"command": "npx",
+			"args": ["-y", "@angular/cli", "mcp"]
+		},
+		"context7": {
+			"command": "npx",
+			"args": ["-y", "@upstash/context7-mcp"]
+		},
+		"typescript-lsp": {
+			"command": "npx",
+			"args": ["-y", "ts-lsp-mcp", "serve", "--stdio"]
+		}
+	}
+}
+```
+
+### Gemini project-local config
+
+Create `.gemini/settings.json` in the repo root and add the same JSON:
+
+```json
+{
+	"mcpServers": {
+		"angular-cli": {
+			"command": "npx",
+			"args": ["-y", "@angular/cli", "mcp"]
+		},
+		"context7": {
+			"command": "npx",
+			"args": ["-y", "@upstash/context7-mcp"]
+		},
+		"typescript-lsp": {
+			"command": "npx",
+			"args": ["-y", "ts-lsp-mcp", "serve", "--stdio"]
+		}
+	}
+}
+```
+
+### Gemini CLI commands
+
+Gemini CLI can write either scope directly:
+
+```bash
+gemini mcp add -s user angular-cli npx -y @angular/cli mcp
+gemini mcp add -s user context7 npx -y @upstash/context7-mcp
+gemini mcp add -s user typescript-lsp npx -y ts-lsp-mcp serve --stdio
+```
+
+```bash
+gemini mcp add -s project angular-cli npx -y @angular/cli mcp
+gemini mcp add -s project context7 npx -y @upstash/context7-mcp
+gemini mcp add -s project typescript-lsp npx -y ts-lsp-mcp serve --stdio
+```
+
+Useful checks:
+
+```bash
+gemini mcp list
+```
+
+## Recommendation
+
+For this repository:
+
+- use `.codex/config.toml` if your team uses Codex
+- use `.vscode/mcp.json` if your team uses Copilot in VS Code
+- use `.gemini/settings.json` if your team uses Gemini CLI
+
+Use global config only when you want the same MCP servers in every project.
+
+## References
+
+- Codex config basics: <https://developers.openai.com/codex/config-basic>
+- Codex MCP docs: <https://developers.openai.com/codex/mcp>
+- VS Code MCP setup: <https://code.visualstudio.com/docs/copilot/customization/mcp-servers>
+- GitHub Copilot MCP overview: <https://docs.github.com/copilot/concepts/context/mcp>
+- Gemini CLI MCP docs: <https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html>
+
+---
+
 # NPM Scripts
 
 Start development:
